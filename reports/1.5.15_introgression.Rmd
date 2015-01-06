@@ -16,13 +16,19 @@ Run the following `R` script to format the SNP50k data and the formatted data we
 ```{r, eval=FALSE}
 source("profiling/1.Introgression/1.A.1_fastPHASE_input.R")
 ```
-And then run `fastPHASE` to do the haplotype phasing with [HMM](http://statweb.stanford.edu/~nzhang/Stat366/Lecture5.pdf).  
+And then run `fastPHASE` to do the haplotype phasing with [HMM](http://statweb.stanford.edu/~nzhang/Stat366/Lecture5.pdf). Basically, I ran the code, for example `fastPHASE -oMex -S1234 mex_120.fp`, to do the hap phasing. To run on `farm` with `slurm`, I prepared the slurm codes with an `R` script. 
+```{r eval=FALSE}
+source("profiling/1.Introgression/1.A.2_run_fastPHASE.R")
+
+# And then run the following code on farm
 ```
-cd /largedata/fphase
-fastPHASE -oMex -S1234 mex_120.fp 
-fastPHASE -oParv -S1234 parv_
-fastPHASE -oLand -S1234 land_
 ```
+cd /home/jolyang/Documents/Github/Introgression
+sbatch -p bigmeml largedata/fphase/mex_fp_slurm.sh
+sbatch -p bigmeml largedata/fphase/parv_fp_slurm.sh
+sbatch -p bigmeml largedata/fphase/land_fp_slurm.sh
+```
+
 # 
 
 

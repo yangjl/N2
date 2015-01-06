@@ -48,5 +48,5 @@ land <- read.table("data/HighLowSNPs_Final.txt", header=TRUE)
 land <- apply(land, 2, as.character)
 land[land=="--"] <- "??"
 
-df2fPHASE(df=land, outfile="largedata/fphase/parv_130.fp")
+df2fPHASE(df=land, outfile="largedata/fphase/land_94.fp")
 
