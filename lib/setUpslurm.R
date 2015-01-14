@@ -9,7 +9,8 @@ setUpslurm <- function(slurmsh="largedata/GenSel/CL_test.sh",
                        sbathe="/home/jolyang/Documents/pvpDiallel/slurm-log/error-%j.txt",
                        sbathJ="jobid"){
     
-    
+    message(sprintf("###>>> cp from Introgression, tailored for pvpDiallel"))  
+  
     ##### setup working directory
     if(is.null(wd)){
        wd <- getwd()
@@ -45,7 +46,7 @@ setUpslurm <- function(slurmsh="largedata/GenSel/CL_test.sh",
     
     message(paste("###>>> In this path: cd ", wd, sep=""), "\n",
             paste("###>>> note --ntask=x, 8GB of memory per CPU"),"\n",
-            paste("###>>> RUN: sbatch -p bigmemh --mem 24000", slurmsh),
+            paste("###>>> RUN: sbatch -p serial --mem 16000", slurmsh),
             "")
     
 }

@@ -3,3 +3,5 @@
 .RData
 packrat/lib*/
 largedata/
+slurm-script/
+slurm-log/
