@@ -20,41 +20,12 @@ Get_SNP50k_Map <- function(){
     return(map)
 }
 
-map <- Get_SNP50k_Map()
+map1 <- Get_SNP50k_Map()
 
 #####
-map <- read.csv("data/MaizeSNP50_A.csv")
-map <- map2[, c("Name", "Chr", "MapInfo")]
+map2 <- read.csv("data/MaizeSNP50_A.csv")
+map2 <- map2[, c("Name", "Chr", "MapInfo")]
 table(map2$Chr)
 
-#Mexicana N=120
-mex <- read.table("data/Mexicana_TopStrand_FinalReport.txt", header=TRUE)
-mex <- apply(mex, 2, as.character)
-mex[mex=="--"] <- "??"
-
-
-test <- merge(map2, mex[, 1:2], by.x="Name", by.y="id")
-
-
-
-df2fPHASE(df=mex, outfile="largedata/fphase/mex_120.fp")
-
-#Parviglumis N=130
-parv <- read.table("data/Parviglumis_TopStrand_FinalReport.txt", header=TRUE)
-parv <- apply(parv, 2, as.character)
-parv[parv=="--"] <- "??"
-
-df2fPHASE(df=parv, outfile="largedata/fphase/parv_130.fp")
-
-#landraces N=94
-land <- read.table("data/HighLowSNPs_Final.txt", header=TRUE)
-land <- apply(land, 2, as.character)
-land[land=="--"] <- "??"
-
-df2fPHASE(df=land, outfile="largedata/fphase/land_94.fp")
-
-
-
-
-
-
+mapall <- merge(map1, map2, by.x="snpid", by.y="Name")
+####

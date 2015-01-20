@@ -2,32 +2,6 @@
 ### 1.5.2014
 ### purpose: format SNP for fastPHASE input
 
-df2fPHASE <- function(df=mex, outfile="largedata/test.out"){
-    #inputdf: 1st: id; snps, note:missing data coded with ??
-    df <- as.data.frame(df)
-    cat(ncol(df)-1,
-        nrow(df),
-        #paste(df$id, sep=" "),
-        file=outfile, sep="\n")
-    #cat(as.character(df$id),
-    #    "\n",
-    #    file=outfile, append=TRUE, sep=" ")
-    
-    for(i in 2:ncol(df)){
-        temp <- as.data.frame(df[, c(1,i)])
-        temp$snp1 <- gsub(".$", "", temp[,2])
-        temp$snp2 <- gsub("^.", "", temp[,2])
-        cat(names(temp)[2],
-            "\n",
-            temp$snp1,
-            "\n",
-            temp$snp2,
-            "\n",
-            append=TRUE,file=outfile, sep="")
-    }
-    message(sprintf("fastPHASE file output to: [ %s ] ", outfile))
-}
-
 #######
 #snp50 map
 Get_SNP50k_Map <- function(){
@@ -46,35 +20,80 @@ Get_SNP50k_Map <- function(){
     return(map)
 }
 
-map <- Get_SNP50k_Map()
+############
+selectSNP <- function(){
+    #Mexicana N=120
+    mex <- read.table("data/Mexicana_TopStrand_FinalReport.txt", header=TRUE)
+    mex <- as.data.frame(mex)
+    message(sprintf("#>>> [ %s ] snps for [ %s ] Mexicanna plants", nrow(mex), ncol(mex)-1))
+    #Parviglumis N=130
+    parv <- read.table("data/Parviglumis_TopStrand_FinalReport.txt", header=TRUE)
+    parv <- as.data.frame(parv)
+    message(sprintf("#>>> [ %s ] snps for [ %s ] Parviglumis plants", nrow(parv), ncol(parv)-1))
+    #landraces N=94
+    land <- read.table("data/HighLowSNPs_Final.txt", header=TRUE)
+    land <- as.data.frame(land)
+    message(sprintf("#>>> [ %s ] snps for [ %s ] Landraces plants", nrow(land), ncol(land)-1))
+    
+    olsnp <- merge(mex[,1:2], land[, 1:2], by="id")
+    ol2 <- merge(olsnp, parv[, 1:2], by="id")
+    message(sprintf("#>>> outlist[[1]]: [ %s ] snps mex and land", nrow(olsnp) ))
+    message(sprintf("#>>> outlist[[2]]: [ %s ] snps mex, parv and land", nrow(ol2) ))
+    return(list(olsnp, ol2))
+}
 
-map2 <- read.csv("data/MaizeSNP50_A.csv")
-map2 <- map2[, c("Name", "Chr", "MapInfo")]
-table(map2$Chr)
+##################
+fp_by_chr <- function(infile="data/Mexicana_TopStrand_FinalReport.txt", 
+                      snps=snps[[2]], 
+                      map=map,
+                      outfile.base="largedata/fphase/mex_120"){
+    
+    mex <- read.table(infile, header=TRUE)
+    mex <- subset(mex, id %in% snps$id)
+    mex2 <- merge(map, mex, by.x="snpid", by.y="id") 
+    mex2 <- apply(mex2, 2, as.character)
+    mex2[mex2=="--"] <- "??"
+    mex2 <- as.data.frame(mex2)
+    mex2 <- mex2[order(mex2$chr, mex2$physical), ]
+    
+    mex2$chr <- as.numeric(as.character(mex2$chr))
+    
+    for(chri in 1:10){
+        mex3 <- subset(mex2, chr==chri)
+        out <- paste0(outfile.base, "_chr", chri)
+        df2fp(df=mex3, outfile=out) 
+    }
+}
 
-#Mexicana N=120
-mex <- read.table("data/Mexicana_TopStrand_FinalReport.txt", header=TRUE)
-mex <- apply(mex, 2, as.character)
-mex[mex=="--"] <- "??"
 
 
-test <- merge(map2, mex[, 1:2], by.x="Name", by.y="id")
+main <- function(){
+    map <- Get_SNP50k_Map() #37,568 
+    map <- map[order(map$chr, map$physical), ]
+    
+    # only select SNPs that present on all three populations
+    snps <- selectSNP()
+    #>>> [ 43694 ] snps for [ 120 ] Mexicanna plants
+    #>>> [ 43701 ] snps for [ 130 ] Parviglumis plants
+    #>>> [ 49284 ] snps for [ 94 ] Landraces plants
+    #>>> outlist[[1]]: [ 41340 ] snps mex and land
+    #>>> outlist[[2]]: [ 37621 ] snps mex, parv and land
+    #library("lib/df2fp.R")
+    fp_by_chr(infile="data/Mexicana_TopStrand_FinalReport.txt", 
+              snps=snps[[2]],  map=map,
+              outfile.base="largedata/fphase/mex_120")
+    
+    fp_by_chr(infile="data/Parviglumis_TopStrand_FinalReport.txt", 
+              snps=snps[[2]],  map=map,
+              outfile.base="largedata/fphase/parv_130")
+    
+    fp_by_chr(infile="data/HighLowSNPs_Final.txt", 
+              snps=snps[[2]],  map=map,
+              outfile.base="largedata/fphase/land_94")
+    
+    return(map)
+}
 
-
-
-df2fPHASE(df=mex, outfile="largedata/fphase/mex_120.fp")
-
-#Parviglumis N=130
-parv <- read.table("data/Parviglumis_TopStrand_FinalReport.txt", header=TRUE)
-parv <- apply(parv, 2, as.character)
-parv[parv=="--"] <- "??"
-
-df2fPHASE(df=parv, outfile="largedata/fphase/parv_130.fp")
-
-#landraces N=94
-land <- read.table("data/HighLowSNPs_Final.txt", header=TRUE)
-land <- apply(land, 2, as.character)
-land[land=="--"] <- "??"
-
-df2fPHASE(df=land, outfile="largedata/fphase/land_94.fp")
-
+######
+library("lib/df2fp.R")
+map <- main()

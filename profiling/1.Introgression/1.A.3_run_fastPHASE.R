@@ -4,31 +4,48 @@
 
 source("lib/setUpslurm.R")
 
+getshell <- function(basestring="parv_130_chr"){
+    mysh <- c()
+    for(i in 1:10){
+        myinp <- paste0("fastPHASE -o", basestring, i, " -S1234 largedata/fphase/",basestring, i)
+        mysh <- c(mysh, myinp)
+    }
+    return(mysh)
+}
+
+
+
+##############################
+sh1 <- getshell(basestring="mex_120_chr")
 ### hap phasing mexicana
 setUpslurm(slurmsh="largedata/fphase/mex_fp_slurm.sh",
            oneline=TRUE,
-           codesh="fastPHASE -oMex -S1234 largedata/fphase/mex_120.fp",
+           codesh= sh1,
            wd=NULL,
-           sbatho="/home/jolyang/Documents/Github/Introgression/slurm-log/testout-%j.txt",
-           sbathe="/home/jolyang/Documents/Github/Introgression/slurm-log/error-%j.txt",
-           sbathJ="mex_fp")
+           sbatho="/home/jolyang/Documents/Github/N2/slurm-log/testout-%j.txt",
+           sbathe="/home/jolyang/Documents/Github/N2/slurm-log/error-%j.txt",
+           sbathJ="mex_fp_bychr")
+#sbatch -p bigmemh largedata/fphase/mex_fp_slurm.sh
 
 ### hap phasing Parviglumis (N=130)
+sh2 <- getshell(basestring="parv_130_chr")
 setUpslurm(slurmsh="largedata/fphase/parv_fp_slurm.sh",
            oneline=TRUE,
-           codesh="fastPHASE -oParv -S1234 largedata/fphase/parv_130.fp",
+           codesh=sh2,
            wd=NULL,
-           sbatho="/home/jolyang/Documents/Github/Introgression/slurm-log/testout-%j.txt",
-           sbathe="/home/jolyang/Documents/Github/Introgression/slurm-log/error-%j.txt",
-           sbathJ="parv_fp")
+           sbatho="/home/jolyang/Documents/Github/N2/slurm-log/testout-%j.txt",
+           sbathe="/home/jolyang/Documents/Github/N2/slurm-log/error-%j.txt",
+           sbathJ="parv_fp_bychr")
+#sbatch -p bigmemh largedata/fphase/parv_fp_slurm.sh
 
 ### hap phasing Landraces (N=94)
+sh3 <- getshell(basestring="land_94_chr")
 setUpslurm(slurmsh="largedata/fphase/land_fp_slurm.sh",
            oneline=TRUE,
-           codesh="fastPHASE -oLand -S1234 largedata/fphase/land_94.fp",
+           codesh=sh3,
            wd=NULL,
-           sbatho="/home/jolyang/Documents/Github/Introgression/slurm-log/testout-%j.txt",
-           sbathe="/home/jolyang/Documents/Github/Introgression/slurm-log/error-%j.txt",
-           sbathJ="land_fp")
-
+           sbatho="/home/jolyang/Documents/Github/N2/slurm-log/testout-%j.txt",
+           sbathe="/home/jolyang/Documents/Github/N2/slurm-log/error-%j.txt",
+           sbathJ="land_fp_bychr")
+# sbatch -p bigmemh largedata/fphase/land_fp_slurm.sh
 

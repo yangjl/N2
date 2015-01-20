@@ -10,6 +10,13 @@ Test whether Totontepec maize lines have admixture with _mexicana_ using SNP50k 
 
 ---------
 
+# genetic and physical map of the SNP50k
+
+I compared the SNP50k map from Matt's archive and the map downloaded from Illumina website. Matt's map is more inforamtive. It contains less SNPs (N=37,568) but more of them have physical information.
+
+```{r, eval=FALSE}
+source("../profiling/1.Introgression/1.A.1_snps_3popl.R")
+```
 
 # Phasing parental reference populations using __fastPHASE__
 
@@ -25,7 +32,7 @@ And then run `fastPHASE` to do the haplotype phasing with [HMM](http://statweb.s
 `fastPHASE -oMex -S1234 mex_120.fp`,   
 to do the hap phasing. To run on `farm` with `slurm`, I prepared the slurm codes with an `R` script. 
 ```{r eval=FALSE}
-source("profiling/1.Introgression/1.A.2_run_fastPHASE.R")
+source("../profiling/1.Introgression/1.A.2_run_fastPHASE.R")
 
 # run the following code on farm
 ```
