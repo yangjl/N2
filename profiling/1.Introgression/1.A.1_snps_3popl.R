@@ -20,12 +20,40 @@ Get_SNP50k_Map <- function(){
     return(map)
 }
 
-map1 <- Get_SNP50k_Map()
 
 #####
-map2 <- read.csv("data/MaizeSNP50_A.csv")
-map2 <- map2[, c("Name", "Chr", "MapInfo")]
-table(map2$Chr)
+get_ref_alt <- function(){
+    map2 <- read.csv("data/MaizeSNP50_A.csv")
+    ### change to SNP column rather than SourceSeq
+    map2 <- map2[, c("Name", "Chr", "MapInfo", "SNP")]
+    table(map2$Chr)
+    map2$alleles <- gsub(".*\\[", "", map2$SNP)
+    map2$alleles <- gsub("\\].*", "", map2$alleles)
+    
+    map2$ref <- gsub("\\/.*", "", map2$alleles)
+    map2$alt <- gsub(".*\\/", "", map2$alleles)
+    return(map2[, c("Name","alleles", "ref", "alt")])
+}
 
-mapall <- merge(map1, map2, by.x="snpid", by.y="Name")
+######
+main <- function(){
+    ### get the map info from matt's data
+    map1 <- Get_SNP50k_Map()
+    message(sprintf("###===> [ %s ] SNPs from Matt's data with map info!", nrow(map1)))
+    
+    ### get ref and alt allele info from illumina website
+    map2 <- get_ref_alt()
+    message(sprintf("###===> [ %s ] SNPs from illumina with allele info!", nrow(map2)))
+    
+    mapall <- merge(map1, map2, by.x="snpid", by.y="Name")
+    message(sprintf("###===> In total, [ %s ] SNPs for both!", nrow(mapall)))
+    return(mapall)
+}
+
 ####
+snpall <- main()
+###===> [ 37568 ] SNPs from Matt's data with map info!
+###===> [ 56110 ] SNPs from illumina with allele info!
+###===> In total, [ 37568 ] SNPs for both!
+write.table(snpall, "largedata/fphase/snp50k_info.csv", sep=",", row.names=FALSE, quote=FALSE)
+

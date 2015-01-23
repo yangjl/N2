@@ -2,24 +2,6 @@
 ### 1.5.2014
 ### purpose: format SNP for fastPHASE input
 
-#######
-#snp50 map
-Get_SNP50k_Map <- function(){
-    map1 <- read.table("largedata/maize_snpfile.1", header=FALSE)
-    map2 <- read.table("largedata/maize_snpfile.2", header=FALSE)
-    map3 <- read.table("largedata/maize_snpfile.3", header=FALSE)
-    map4 <- read.table("largedata/maize_snpfile.4", header=FALSE)
-    map5 <- read.table("largedata/maize_snpfile.5", header=FALSE)
-    map6 <- read.table("largedata/maize_snpfile.6", header=FALSE)
-    map7 <- read.table("largedata/maize_snpfile.7", header=FALSE)
-    map8 <- read.table("largedata/maize_snpfile.8", header=FALSE)
-    map9 <- read.table("largedata/maize_snpfile.9", header=FALSE)
-    map10 <- read.table("largedata/maize_snpfile.10", header=FALSE)
-    map <- rbind(map1, map2, map3, map4, map5, map6, map7, map8, map9, map10)
-    names(map) <- c("snpid", "chr", "genetic", "physical")
-    return(map)
-}
-
 ############
 selectSNP <- function(){
     #Mexicana N=120
@@ -65,10 +47,9 @@ fp_by_chr <- function(infile="data/Mexicana_TopStrand_FinalReport.txt",
     }
 }
 
-
-
+######################
 main <- function(){
-    map <- Get_SNP50k_Map() #37,568 
+    map <- read.csv("largedata/fphase/snp50k_info.csv", header=TRUE)
     map <- map[order(map$chr, map$physical), ]
     
     # only select SNPs that present on all three populations
@@ -91,9 +72,19 @@ main <- function(){
               snps=snps[[2]],  map=map,
               outfile.base="largedata/fphase/land_94")
     
+    map <- subset(map, snpid %in% snps[[2]]$id)
+    map <- map[order(map$chr, map$physical), ]
     return(map)
 }
 
-######
+########################
 library("lib/df2fp.R")
 map <- main()
+#>>> [ 43694 ] snps for [ 120 ] Mexicanna plants
+#>>> [ 43701 ] snps for [ 130 ] Parviglumis plants
+#>>> [ 49284 ] snps for [ 94 ] Landraces plants
+#>>> outlist[[1]]: [ 41340 ] snps mex and land
+#>>> outlist[[2]]: [ 37621 ] snps mex, parv and land
+
+write.table(map, "largedata/fphase/snp50k_subset_info.csv", sep=",", row.names=FALSE, quote=FALSE)
+
