@@ -3,7 +3,7 @@
 # purpose: simulate a set of SNPs for fpSNP 
 
 ### you have to change to your own working directory
-dsf <- read.table("data/merged_chrall_maf1miss6.dsf", nrow=1000, header=TRUE)
+dsf <- read.table("largedata/merged_chrall_maf1miss6.dsf", nrow=1000, header=TRUE)
 
 
 names(dsf)[2:3] <- c("chr", "pos")
