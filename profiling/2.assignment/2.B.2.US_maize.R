@@ -13,7 +13,7 @@ get_us_accession <- function(){
     # import the pedigree dataframe of interest
     ames <- read.csv("data/AmesGBSlist.csv", header = T, stringsAsFactors = F)
     ames$Accession <- toupper(ames$Accession)
-    message(sprintf("Unique accessions in Ames GBS data: [ %s ]", length(unique(ames$Accession))))
+    message(sprintf("###>>> Unique accessions in Ames GBS data: [ %s ]", length(unique(ames$Accession))))
     
     us1 <- subset(ames, Accession %in% usm$Plant.ID)
     
@@ -21,12 +21,14 @@ get_us_accession <- function(){
     
     us12 <- rbind(us1, us2)
     us12 <- us12[!duplicated(us12[,1]), ]
-    message(sprintf("Accessions from US: [ %s ]", length(unique(us12$Accession))))
+    message(sprintf("###>>> Accessions from US: [ %s ]", length(unique(us12$Accession))))
     return(us12)
 }
 
 #### get lines from US and mapped their accession ID to Ames GBS panel
 uslines <- get_us_accession()
+###>>> Unique accessions in Ames GBS data: [ 3170 ]
+###>>> Accessions from US: [ 2101 ]
 write.table(uslines, "data/US_ames_GBS.csv", sep=",", row.names=FALSE, quote=FALSE)
 
 
