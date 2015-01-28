@@ -22,17 +22,20 @@ Get_SNP50k_Map <- function(){
 
 
 #####
-get_ref_alt <- function(){
+get_topbot <- function(){
     map2 <- read.csv("data/MaizeSNP50_A.csv")
-    ### change to SNP column rather than SourceSeq
-    map2 <- map2[, c("Name", "Chr", "MapInfo", "SNP")]
+    ### change to TopGenomicSeq column rather than SourceSeq
+    map2 <- map2[, c("Name", "Chr", "MapInfo", "TopGenomicSeq")]
     table(map2$Chr)
-    map2$alleles <- gsub(".*\\[", "", map2$SNP)
+    map2$alleles <- gsub(".*\\[", "", map2$TopGenomicSeq)
     map2$alleles <- gsub("\\].*", "", map2$alleles)
     
-    map2$ref <- gsub("\\/.*", "", map2$alleles)
-    map2$alt <- gsub(".*\\/", "", map2$alleles)
-    return(map2[, c("Name","alleles", "ref", "alt")])
+    ### ref this one for http://www.illumina.com/documents/products/technotes/technote_topbot.pdf
+    
+    map2 <- map2[, c("Name", "alleles")]
+    names(map2)[2] <- "topbot"
+    map2$topbot <- gsub("\\/", ",", map2$topbot)
+    return(map2)
 }
 
 ######
@@ -42,10 +45,11 @@ main <- function(){
     message(sprintf("###===> [ %s ] SNPs from Matt's data with map info!", nrow(map1)))
     
     ### get ref and alt allele info from illumina website
-    map2 <- get_ref_alt()
-    message(sprintf("###===> [ %s ] SNPs from illumina with allele info!", nrow(map2)))
+    map2 <- get_topbot()
+    message(sprintf("###===> [ %s ] SNPs from illumina with TopBot allele info!", nrow(map2)))
     
     mapall <- merge(map1, map2, by.x="snpid", by.y="Name")
+    mapall$chr <- paste0("chr", mapall$chr)
     message(sprintf("###===> In total, [ %s ] SNPs for both!", nrow(mapall)))
     return(mapall)
 }
@@ -53,7 +57,8 @@ main <- function(){
 ####
 snpall <- main()
 ###===> [ 37568 ] SNPs from Matt's data with map info!
-###===> [ 56110 ] SNPs from illumina with allele info!
+###===> [ 56110 ] SNPs from illumina with TopBot allele info!
 ###===> In total, [ 37568 ] SNPs for both!
-write.table(snpall, "largedata/fphase/snp50k_info.csv", sep=",", row.names=FALSE, quote=FALSE)
+write.table(snpall[, c("chr", "physical", "topbot")], "largedata/snp50k_topbot.txt", 
+            sep="\t", row.names=FALSE, col.names=FALSE, quote=FALSE)
 

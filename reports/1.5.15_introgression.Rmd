@@ -10,13 +10,51 @@ Test whether Totontepec maize lines have admixture with _mexicana_ using SNP50k 
 
 ---------
 
-# genetic and physical map of the SNP50k
+# Get genetic and physical map of the SNP50k
 
-I compared the SNP50k map from Matt's archive and the map downloaded from Illumina website. Matt's map is more inforamtive. It contains less SNPs (N=37,568) but more of them have physical information.
+I compared the SNP50k map from Matt's archive and the map downloaded from Illumina website. Matt's map is more inforamtive. It contains less SNPs (N=37,568) but more of them have physical information. However, the top/bot allele issue need to be first addressed.
 
 ```{r, eval=FALSE}
-source("../profiling/1.Introgression/1.A.1_snps_3popl.R")
+### output top/bot allele with the chr and pos info pulled out from Matt's data.
+source("../profiling/1.Introgression/1.A.1_snps_topbot.R")
 ```
+
+# Transform top/bot to forward strand
+
+Use the perl code **top2ref** from __zmSNPtools__ to do the trick. Here is how I did it:
+
+```{r, eval=FALSE}
+### install the software
+export PERL5LIB=$PERL5LIB:~/Documents/Github/zmSNPtools/modules
+cp packages/top2ref/top2ref.pl bin/top2ref
+chmod +x bin/top2ref
+
+### use samtools to index reference genome in fasta format
+sed -i -- 's/chromosome:AGPv2:.*chromosome /chr/g' ZmB73_RefGen_v2.fasta
+samtools faidx ZmB73_RefGen_v2.fasta
+
+### run the program to determine the strand first
+cd /home/jolyang/Documents/Github/N2/largedata
+cat snp50k_topbot.txt | top2ref -r ~/dbcenter/AGP/AGPv2/ZmB73_RefGen_v2.fasta > snp50k_topbot.map
+
+### remove SNPs that could not be determined
+source("../profiling/1.Introgression/1.A.2_snp_topbot_remove0.R")
+# only 11 SNPs could not be determined, that is acceptable
+
+### run the program again to flip the 37k SNPs
+cat snp50k_topbot.txt | top2ref -m snp50k_topbot.map > snp50k_topbot.fwd
+
+```
+
+# Translate top/bot to ref/alt
+
+Assemble all the information together with teh __"top/bot"__, __"fwdtop/fwdbot"__ and __"ref/alt"__ alleles information. These could be used as the translation table, where top=>fwdtop, bot=>fwdbot.  
+
+```{r, eval=FALSE}
+### generate the translation table
+source("../profiling/1.Introgression/1.A.3_snp_translation_table.R")
+```
+
 
 # Phasing parental reference populations using __fastPHASE__
 

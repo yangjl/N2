@@ -4,3 +4,5 @@
 largedata/
 slurm-script/
 slurm-log/
+packrat/lib*/
+packrat/src/
