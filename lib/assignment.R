@@ -2,7 +2,7 @@
 ### Jan 29th, 2015
 ### purpose: get assignment probility
 
-assignone <- function(snpfq=snpfq, geno=geno){
+assignone <- function(snpfq=snpfq, geno=geno, nmarker=nmarker){
     ###geno contains: snpid, haplotypes
     snpfq$a1 <- "N"
     snpfq$a2 <- "N"
@@ -15,6 +15,8 @@ assignone <- function(snpfq=snpfq, geno=geno){
         
         ### removing alleles with missing data
         geno <- subset(geno, a1 != "N" | a2 !="N")
+        geno <- geno[order(geno$diff, decreasing=TRUE),]
+        geno <- geno[1:nmarker, ]
         
         ### log likelihood for population one
         frq1 <- subset(geno, minor == a1 & minor == a2 )$maf1
@@ -65,14 +67,14 @@ assignp <- function(frqfile="largedata/assignprb/usgbs_tot50k_5619.snpfrq",
     
     ### select top markers for assignment!
     ### select n markers
-    if(nrow(snpfq) > nmarker){
-        snpfq <- snpfq[1:nmarker, ]
-    }else{
-        message(sprintf("Non-duplicated markers [%s] less than selected [%s]", nrow(snpfq), nmarker))
-    }
+    #if(nrow(snpfq) > nmarker){
+    #    snpfq <- snpfq[1:nmarker, ]
+    #}else{
+    #    message(sprintf("Non-duplicated markers [%s] less than selected [%s]", nrow(snpfq), nmarker))
+    #}
     
     ### start to assign probability for selected ind for each plant
-    resp <- assignone(snpfq=snpfq, geno=geno)
+    resp <- assignone(snpfq=snpfq, geno=geno, nmarker=nmarker)
     return(resp)
 }
 

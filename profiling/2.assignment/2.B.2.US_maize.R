@@ -32,4 +32,4 @@ uslines <- get_us_accession()
 write.table(uslines, "data/US_ames_GBS.csv", sep=",", row.names=FALSE, quote=FALSE)
 
 
-
+uslines <- read.csv("data/US_ames_GBS.csv")
