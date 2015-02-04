@@ -18,22 +18,22 @@ assignone <- function(snpfq=snpfq, geno=geno, nmarker=nmarker){
         geno <- geno[order(geno$diff, decreasing=TRUE),]
         geno <- geno[1:nmarker, ]
         
-        ### log likelihood for population one
+        ### log10 likelihood for population one
         frq1 <- subset(geno, minor == a1 & minor == a2 )$maf1
-        p1_p2 <- sum(log( frq1*frq1 ))
+        p1_p2 <- sum(log10( frq1*frq1 ))
         frq12 <- subset(geno, (minor == a1 & minor != a2) | (minor != a1 & minor == a2))$maf1
-        p1_2pq <- sum(log( 2*frq12*(1-frq12) ))
+        p1_2pq <- sum(log10( 2*frq12*(1-frq12) ))
         frq2 <- subset(geno, minor != a1 & minor != a2)$maf1
-        p1_q2 <- sum(log( (1-frq2)*(1-frq2)  ))
+        p1_q2 <- sum(log10( (1-frq2)*(1-frq2)  ))
         pop1 <- p1_p2 + p1_2pq + p1_q2
         
-        ### log likelihood for population two
+        ### log10 likelihood for population two
         frq3 <- subset(geno, minor == a1 & minor == a2 )$maf2
-        p2_p2 <- sum(log( frq3*frq3 ))
+        p2_p2 <- sum(log10( frq3*frq3 ))
         frq34 <- subset(geno, (minor == a1 & minor != a2) | (minor != a1 & minor == a2))$maf2
-        p2_2pq <- sum(log( 2*frq34*(1-frq34) ))
+        p2_2pq <- sum(log10( 2*frq34*(1-frq34) ))
         frq4 <- subset(geno, minor != a1 & minor != a2)$maf2
-        p2_q2 <- sum(log( (1-frq4)*(1-frq4)  ))
+        p2_q2 <- sum(log10( (1-frq4)*(1-frq4)  ))
         pop2 <- p2_p2 + p2_2pq + p2_q2
         
         tem <- data.frame(plant=names(geno)[i], nSNP=nrow(geno), P1=pop1, P2=pop2)
@@ -51,6 +51,19 @@ assignp <- function(frqfile="largedata/assignprb/usgbs_tot50k_5619.snpfrq",
     
     ### read in the data
     snpfq0 <- read.table(frqfile, header=TRUE)
+    if(sum(snpfq0$maf1 == 0) > 0){
+        snpfq0[snpfq0$maf1==0,]$maf1 <- 0.001
+    }
+    if(sum(snpfq0$maf1 == 1)){
+        snpfq0[snpfq0$maf1==1,]$maf1 <- 0.999
+    }
+    if(sum(snpfq0$maf2 == 0)){
+        snpfq0[snpfq0$maf2==0,]$maf2 <- 0.001
+    }
+    if(sum(snpfq0$maf2 == 1)){
+        snpfq0[snpfq0$maf2==1,]$maf2 <- 0.999
+    }
+    
     snpfq0$diff <- abs(snpfq0$maf1 - snpfq0$maf2)
     
     ### snp filtering based on missingrate
