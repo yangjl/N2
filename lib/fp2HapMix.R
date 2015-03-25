@@ -1,7 +1,6 @@
-# Jinliang Yang
-# 1.21.2015
-# purpose: format the output from fastPHASE to HAPMIX
-
+### Jinliang Yang
+### March 25th, 2015
+### purpose: convert fastphase format to HapMix format
 
 read_fastphase <- function(fileName = "largedata/fphase/land_94_chr10_hapguess_switch.out", chrnum=10){
     
@@ -37,12 +36,10 @@ read_fastphase <- function(fileName = "largedata/fphase/land_94_chr10_hapguess_s
         }   
     }
     
-    print(sprintf("###>>> reading [ %s ] plants for [ %s ] SNPs", nline %/% 3, length(geno2)))
+    print(sprintf("###>>> reading [ %s ] plants for [ %s ] SNPs for Chr [%s]", nline %/% 3, length(geno2), chrnum))
     return(res)
 }
 
-####
-fp <- read_fastphase(fileName = "largedata/fphase/land_94_chr10_hapguess_switch.out")
 
 
 traslate2hapmix <- function(fp = df, startcol=8, outfile="largedata/test.out",
@@ -65,56 +62,11 @@ traslate2hapmix <- function(fp = df, startcol=8, outfile="largedata/test.out",
                 row.names=FALSE, col.names=FALSE, quote=FALSE)
     
     snpinfo <- fp[, c(1:4,6:7)]
-    write.table(snpinfo, outinfo, sep="\t", 
+    snpinfo$genetic <- format(snpinfo$genetic, digits=7)
+    write.table(snpinfo, outinfo, sep="\t", col.names=FALSE,
                 row.names=FALSE, quote=FALSE)
     
 }
-
-
-
-
-
-
-
-
-
-
-
-if nline >= 0 and nline % 3 == 0:
-    data[line] = []
-snpid = line
-nline += 1
-elif nline >= 0 and nline % 3 != 0:
-    data[snpid].append(line)
-nline += 1
-
-###### read the fastphase output to {'ind1':['A T C','C T G']}
-def readfile(infile="largedata/fphase/fastphase_hapguess_swith.out"):
-    
-    with open(infile, 'r') as infile:
-    data = {}
-nline = -9
-for line in infile:
-    line = line.strip()
-if not line: continue
-if line.startswith("BEGIN GENOTYPES"):
-    nline = 0
-continue
-if line.startswith("END GENOTYPES"):
-    # define global variable `snpnum`
-    snpnum = len(data[snpid][0].split())
-print ">>> loaded", len(data),  "individuals with", snpnum, "SNPs!"
-return data
-if nline >= 0 and nline % 3 == 0:
-    data[line] = []
-snpid = line
-nline += 1
-elif nline >= 0 and nline % 3 != 0:
-    data[snpid].append(line)
-nline += 1
-
-
-
 
 
 
