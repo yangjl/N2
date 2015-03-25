@@ -43,10 +43,18 @@ cd largedata
 bedtools getfasta -tab -fi ~/dbcenter/AGP/AGPv2/ZmB73_RefGen_v2.fasta -bed snp50k_bed.txt -fo snp50k_ref.txt
 #############
 
+
+######## compare the two:
 snpref <- read.table("largedata/snp50k_ref.txt", header=FALSE)
 names(snpref) <- c("snpid", "bedref")
 snpref$snpid <- gsub(":.*-", "_", snpref$snpid)
 snpref$snpid <- gsub("chr", "", snpref$snpid)
 
+snptab <- read.csv("largedata/top2ref_snptab.csv")
+
 snptab2 <- merge(snptab, snpref, by="snpid")
+dim(snptab2)
+#37557
+sum(snptab2$ref == snptab2$bedref)
+
 

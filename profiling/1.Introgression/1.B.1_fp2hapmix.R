@@ -42,7 +42,33 @@ read_fastphase <- function(fileName = "largedata/fphase/land_94_chr10_hapguess_s
 }
 
 ####
-df <- read_fastphase(fileName = "largedata/fphase/land_94_chr10_hapguess_switch.out")
+fp <- read_fastphase(fileName = "largedata/fphase/land_94_chr10_hapguess_switch.out")
+
+
+traslate2hapmix <- function(fp = df, startcol=8, outfile="largedata/test.out",
+                            outinfo="largedata/snp.info"){
+    
+    fp <- fp[order(fp$chr, fp$physical),]
+    fp[, (startcol-2):ncol(fp)] <- apply(fp[, (startcol-2):ncol(fp)], 2, as.character)
+    
+    subfp <- fp[, startcol:ncol(fp)]
+    if(sum(subfp == "N") > 0){
+        stop("No missing data allowed for traslation!")
+    }
+    for(i in startcol:ncol(fp)){
+        fp[fp[, i] != fp[, "ref"], i] <- 0
+        fp[fp[, i] == fp[, "ref"], i] <- 1
+        
+    }
+    
+    write.table(fp[, startcol:ncol(fp)], outfile, sep="", 
+                row.names=FALSE, col.names=FALSE, quote=FALSE)
+    
+    snpinfo <- fp[, c(1:4,6:7)]
+    write.table(snpinfo, outinfo, sep="\t", 
+                row.names=FALSE, quote=FALSE)
+    
+}
 
 
 

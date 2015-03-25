@@ -62,3 +62,4 @@ snpall <- main()
 write.table(snpall[, c("chr", "physical", "topbot")], "largedata/snp50k_topbot.txt", 
             sep="\t", row.names=FALSE, col.names=FALSE, quote=FALSE)
 
+####### Use top2ref.pl to do the transformation from top/bot to forward stand!!!!
