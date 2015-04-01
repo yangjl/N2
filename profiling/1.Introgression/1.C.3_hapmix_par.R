@@ -1,49 +1,39 @@
+### Jinliang Yang
+### March 31, 2015
+### Run HAPMIX
 
-hapmixPar(parfile="test_chr10.par", ref1geno="maizeland94.out", 
-          ref2geno="mex120.out", ref1snp="snp_maize.info", ref2snp="snp_mex.info",
-          admixsnp="toton_chr10.snpinfo", admixgeno="toton_chr10.out", admixind="toton_chr10.ind", 
-          ref1label="MZ", ref2label="MEX",
-          rates="toton_chr10.rate", admixlabel="TOTON", 
-          chr=10, outdir="TestOut", 
-          mode="LOCAL_ANC")
+source("lib/hapmixPar.R")
 
-#perl bin/runHapmix.pl test_chr10.par
-
-
-hapmixPar <- function(parfile="test_chr10.par", ref1geno="maizeland94.out", 
-                      ref2geno="mex120.out", ref1snp="snp_maize.info", ref2snp="snp_mex.info",
-                      admixsnp="toton_chr10.snpinfo", admixgeno="toton_chr10.out", admixind="toton_chr10.ind", 
-                      ref1label="MZ", ref2label="MEX",
-                      rates="toton_chr10.rate", admixlabel="TOTON", 
-                      chr=10, outdir="TestOut", 
-                      mode="LOCAL_ANC"){
-    cat("GENOTYPE:1",
-        "OUTPUT_SITES:0",
-        "SITE_POSITIONS: 1 1000000000",
-        "THETA:0.2",
-        "LAMBDA:6.0",
-        "RECOMBINATION_VALS:600 900",
-        "MUTATION_VALS:0.2 0.2 0.01",
-        "MISCOPYING_VALS:0.05 0.05",
-        
-        paste0("REFPOP1GENOFILE:", ref1geno),
-        paste0("REFPOP2GENOFILE:", ref2geno),
-        paste0("REFPOP1SNPFILE:", ref1snp),
-        paste0("REFPOP2SNPFILE:", ref2snp),
-        paste0("ADMIXSNPFILE:", admixsnp),
-        paste0("ADMIXGENOFILE:",admixgeno),
-        paste0("ADMIXINDFILE:",admixind),
-        paste0("REF1LABEL:", ref1label),
-        paste0("REF2LABEL:", ref2label),
-        paste0("RATESFILE: ", rates),
-        paste0("ADMIXPOP: ", admixlabel),
-        paste0("CHR:", chr),
-        paste0("OUTDIR:", outdir),
-        paste0("HAPMIX_MODE:", mode),
-        "OUTPUT_DETAILS:PROB",
-        "THRESHOLD:0.0",
-        "KEEPINTFILES:0",
-        
-        file=parfile, sep="\n", append=FALSE)
+for(chri in 1:10){
+    hapmixPar(parfile= paste0("hprun1_chr", chri, ".par"), 
+              ref1geno= paste0("mex120_chr", chri, ".out"), ref2geno= paste0("maizeland94_chr", chri, ".out"), 
+              ref1snp= paste0("snp_mex_chr", chri, ".info"), ref2snp= paste0("snp_maize_chr", chri, ".info"),
+              admixsnp= paste0("toton_chr", chri, ".snpinfo"), admixgeno= paste0("toton_chr", chri, ".out"), 
+              admixind= paste0("toton_chr", chri, ".ind"), 
+              ref1label="MEX", ref2label="MZ",
+              rates= paste0("toton_chr", chri, ".rate"), admixlabel="TOTON", 
+              chr= chri, outdir="HPOUT", pwd="largedata/hapmixrun",
+              mode="LOCAL_ANC") 
 }
+
+
+#perl bin/runHapmix.pl hprun1_chr10.par
+perl bin/runHapmix.pl hprun1_chr1.par
+perl bin/runHapmix.pl hprun1_chr2.par
+perl bin/runHapmix.pl hprun1_chr3.par
+perl bin/runHapmix.pl hprun1_chr4.par
+perl bin/runHapmix.pl hprun1_chr5.par
+perl bin/runHapmix.pl hprun1_chr6.par
+perl bin/runHapmix.pl hprun1_chr7.par
+perl bin/runHapmix.pl hprun1_chr8.par
+perl bin/runHapmix.pl hprun1_chr9.par
+perl bin/runHapmix.pl hprun1_chr10.par
+
+
+
+
+
+
+
+
 
