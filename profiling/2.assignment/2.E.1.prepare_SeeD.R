@@ -6,7 +6,7 @@ readhmp <- function(){
     
     
     #### SeeD location information
-    seedinfo <- read.csv("data/SeeD_idinfo.csv", row.names=NULL)
+    seedinfo <- read.csv("data/SeeD_idinfo.csv")
     
     
     
