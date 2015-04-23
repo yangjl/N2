@@ -1,13 +1,4 @@
-[Header]
-GSGT Version	1.1.9
-Processing Date	8/15/2011 9:41 AM
-Content		MaizeSNP50_A.bpm
-Num SNPs	49284
-Total SNPs	56110
-Num Samples	12
-Total Samples	312
-[Data]
-	P1	P2	P5	P6	P9	P10	P3	P4	P7	P8	P11	P12
+snpid	P1	P2	P5	P6	P9	P10	P3	P4	P7	P8	P11	P12
 abph1.15	GG	GG	AG	AG	AG	AG	AG	AG	AG	GG	AG	AG
 abph1.22	AA	AA	AA	AA	AC	AA	AA	AA	AA	AA	AA	AC
 ae1.4	GG	AG	GG	GG	--	GG	AG	GG	GG	GG	GG	--
