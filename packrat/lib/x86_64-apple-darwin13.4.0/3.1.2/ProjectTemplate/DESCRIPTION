@@ -45,7 +45,7 @@ Maintainer: Kirill Mueller <mail@kirill-mueller.de>
 NeedsCompilation: no
 Repository: CRAN
 Date/Publication: 2014-03-17 10:35:23
-Built: R 3.1.2; ; 2015-02-22 19:59:20 UTC; unix
+Built: R 3.1.2; ; 2015-04-23 23:34:17 UTC; unix
 InstallAgent: packrat 0.4.0.12
 InstallSource: CRAN
 Hash: 884be7024aa4eb7bee03f75ecac5d668
