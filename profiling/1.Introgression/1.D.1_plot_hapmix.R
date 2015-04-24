@@ -25,15 +25,4 @@ getIntrogress <- function(chr=10){
 
 
 getIntrogress(chr=1) 
-  
-    
-    
-    df <- cbind(snpinfo, d1)
-    df$Mex <- 
-    
-    
-    plot(x=df$genetic, y=df$V2, xlab="Mb", ylab="", ylim=c(0,1), type="h", col="maroon")
-    
-    
-}
 dev.off()
