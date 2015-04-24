@@ -78,7 +78,7 @@ main <- function(){
 }
 
 ########################
-library("lib/df2fp.R")
+source("lib/df2fp.R")
 map <- main()
 #>>> [ 43694 ] snps for [ 120 ] Mexicanna plants
 #>>> [ 43701 ] snps for [ 130 ] Parviglumis plants
