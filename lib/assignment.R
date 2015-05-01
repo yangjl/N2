@@ -2,6 +2,54 @@
 ### Jan 29th, 2015
 ### purpose: get assignment probility
 
+
+########################
+assignp <- function(frqfile="largedata/assignprb/usgbs_tot50k_5619.snpfrq", 
+                    geno=geno, N=1000,
+                    nmarker=100, binsize=1000000, missingrate=0.5){
+    
+    ### read in the data
+    snpfq0 <- read.table(frqfile, header=TRUE)
+    if(sum(snpfq0$maf1 == 0) > 0){
+        snpfq0[snpfq0$maf1==0,]$maf1 <- 1/N
+    }
+    if(sum(snpfq0$maf1 == 1)){
+        snpfq0[snpfq0$maf1==1,]$maf1 <- 1 - 1/N
+    }
+    if(sum(snpfq0$maf2 == 0)){
+        snpfq0[snpfq0$maf2==0,]$maf2 <- 1/N
+    }
+    if(sum(snpfq0$maf2 == 1)){
+        snpfq0[snpfq0$maf2==1,]$maf2 <- 1/N
+    }
+    
+    snpfq0$diff <- abs(snpfq0$maf1 - snpfq0$maf2)
+    
+    ### snp filtering based on missingrate
+    snpfq <- subset(snpfq0, missing1 <= missingrate & missing2 <= missingrate)
+    message(sprintf("###>>> [ %s ] SNPs loaded, [ %s ] remaining after filtering [ missingrate=%s ]!", 
+                    nrow(snpfq0), nrow(snpfq), missingrate))
+    
+    ### snp filtering based on binsize
+    snpfq$bin <- paste(snpfq$chr, round(snpfq$pos/binsize, 0), sep="_")
+    snpfq <- snpfq[order(snpfq$diff, decreasing=TRUE),]
+    snpfq <- snpfq[!duplicated(snpfq$bin),]
+    message(sprintf("###>>> [ %s ] unique [ binsize=%s ] bins!", 
+                    nrow(snpfq), binsize))
+    
+    ### select top markers for assignment!
+    ### select n markers
+    #if(nrow(snpfq) > nmarker){
+    #    snpfq <- snpfq[1:nmarker, ]
+    #}else{
+    #    message(sprintf("Non-duplicated markers [%s] less than selected [%s]", nrow(snpfq), nmarker))
+    #}
+    
+    ### start to assign probability for selected ind for each plant
+    resp <- assignone(snpfq=snpfq, geno=geno, nmarker=nmarker)
+    return(resp)
+}
+
 assignone <- function(snpfq=snpfq, geno=geno, nmarker=nmarker){
     ###geno contains: snpid, haplotypes
     snpfq$a1 <- "N"
@@ -43,51 +91,3 @@ assignone <- function(snpfq=snpfq, geno=geno, nmarker=nmarker){
     return(res)
     
 }
-
-########################
-assignp <- function(frqfile="largedata/assignprb/usgbs_tot50k_5619.snpfrq", 
-                    geno=geno,
-                    nmarker=100, binsize=1000000, missingrate=0.5){
-    
-    ### read in the data
-    snpfq0 <- read.table(frqfile, header=TRUE)
-    if(sum(snpfq0$maf1 == 0) > 0){
-        snpfq0[snpfq0$maf1==0,]$maf1 <- 0.001
-    }
-    if(sum(snpfq0$maf1 == 1)){
-        snpfq0[snpfq0$maf1==1,]$maf1 <- 0.999
-    }
-    if(sum(snpfq0$maf2 == 0)){
-        snpfq0[snpfq0$maf2==0,]$maf2 <- 0.001
-    }
-    if(sum(snpfq0$maf2 == 1)){
-        snpfq0[snpfq0$maf2==1,]$maf2 <- 0.999
-    }
-    
-    snpfq0$diff <- abs(snpfq0$maf1 - snpfq0$maf2)
-    
-    ### snp filtering based on missingrate
-    snpfq <- subset(snpfq0, missing1 <= missingrate & missing2 <= missingrate)
-    message(sprintf("###>>> [ %s ] SNPs loaded, [ %s ] remaining after filtering [ missingrate=%s ]!", 
-                    nrow(snpfq0), nrow(snpfq), missingrate))
-    
-    ### snp filtering based on binsize
-    snpfq$bin <- paste(snpfq$chr, round(snpfq$pos/binsize, 0), sep="_")
-    snpfq <- snpfq[order(snpfq$diff, decreasing=TRUE),]
-    snpfq <- snpfq[!duplicated(snpfq$bin),]
-    message(sprintf("###>>> [ %s ] unique [ binsize=%s ] bins!", 
-                    nrow(snpfq), binsize))
-    
-    ### select top markers for assignment!
-    ### select n markers
-    #if(nrow(snpfq) > nmarker){
-    #    snpfq <- snpfq[1:nmarker, ]
-    #}else{
-    #    message(sprintf("Non-duplicated markers [%s] less than selected [%s]", nrow(snpfq), nmarker))
-    #}
-    
-    ### start to assign probability for selected ind for each plant
-    resp <- assignone(snpfq=snpfq, geno=geno, nmarker=nmarker)
-    return(resp)
-}
-
