@@ -2,26 +2,17 @@
 ### April. 4th, 2015
 ### purpose: assign probability and plot the results
 
-
-
-frq <- read.table("largedata/SeeDs/seeds_unimputed_mr6_fpsnp.txt", header=TRUE)
-frq$diff <- abs(frq$maf1 -frq$maf2) 
-frq <- frq[order(frq$diff, decreasing=TRUE),]
-
-
-
-ob <- load("cache/simulate_data.RData")
 source("lib/assignment.R")
 #library("dplyr")
 ##################################################
 ## assign for totontepec
 
-run_assignp_nmarker <- function(assign_geno=geno){
+run_assignp_nmarker <- function(assign_geno=geno, frq=frq){
     myres <- data.frame()
-    for(n in 5:50){
-        for(i in 2:ncol(assign_geno)){
+    for(n in 10:20){
+        for(i in 2:5){
             mygeno <- assign_geno[, c(1, i)]
-            res <- assignp(frqfile="largedata/assignprb/usgbs_tot50k_5619.snpfrq", 
+            res <- assignp(frqfile=frq, N=1000,
                            geno=mygeno, nmarker=n, binsize=1000000, missingrate=0.5)
             myres <- rbind(myres, res)
             
@@ -35,28 +26,17 @@ run_assignp_nmarker <- function(assign_geno=geno){
 
 
 ###
-myres1 <- run_assignp_nmarker(assign_geno=toton)
-myres2 <- run_assignp_nmarker(assign_geno=maize)
+totgeno <- read.table("largedata/SeeDs/Toton_geno_only.txt", header=TRUE)
 
-plot(myres$nSNP, myres$rate,
-     xlab="Number of SNPs", ylab="-log10(L1/L2)", cex.lab=1.3, col="darkblue")
-points(myres2$nSNP, myres2$rate, cex.lab=1.3, col="red")
-
-myres$rate <- log10(10^myres$P2/10^myres$P1)
-myres2$rate <- log10(10^myres2$P2/10^myres2$P1)
-
-par(mfrow=c(1,2))
-plot(myres$nSNP, myres$rate, pch=16, main="Simulated Totontepec Lines", 
-     xlab="Number of SNPs", ylab="log10(L1/L2)", cex.lab=1.3, col="darkblue")
-plot(myres2$nSNP, myres2$rate, cex.lab=1.3, col="red", pch=16, main="Simulated Maize Lines",
-     xlab="Number of SNPs", ylab="log10(L1/L2)")
+myres1 <- run_assignp_nmarker(assign_geno=totgeno, frq="largedata/SeeDs/Toton_unimputed_mr6_fpsnp.txt")
+#myres2 <- run_assignp_nmarker(assign_geno=maize)
 
 
 
 ##################
 
 
-myres <- myres2
+myres <- myres1
 #myres <- subset(myres, plant != "P11" & plant != "P12")
 
 p <- ggplot(myres, aes(x=nSNP, y=rate)) + 
@@ -64,7 +44,7 @@ p <- ggplot(myres, aes(x=nSNP, y=rate)) +
     stat_smooth(method=loess, level=0.999, cex=1.3)   # Add linear regression line 
 p <- p + theme_bw()
 #  (by default includes 95% confidence region)
-p <- p + ggtitle("Simulated Maize Lines") +
+p <- p + ggtitle("Totontepec Lines") +
      theme(plot.title = element_text(lineheight=3, face="bold", color="black", size=29), 
            legend.position = "none")
 p <- p + labs(x="Number of SNPs", y="Log10 (L1 / L2)")
