@@ -53,3 +53,7 @@ gettoton <- function(idinfo="data/SeeD_idinfo.csv", dist_cutoff=1,
 ###############
 gettoton(idinfo="data/SeeD_idinfo.csv", dist_cutoff=1,
          outfile="largedata/SeeDs/Toton_geno_only.txt", mr=0.6)
+
+library(data.table)
+seeds <- fread("largedata/SeeDs/SeeDs-toton_unimputed_mr6_ames.txt", sep="\t")
+

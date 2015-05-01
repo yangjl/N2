@@ -3,20 +3,42 @@
 ### purpose: assign probability and plot the results
 
 source("lib/assignment.R")
-#library("dplyr")
+res1 <- assignp(frqfile="largedata/SeeDs/Toton_unimputed_mr6_fpsnp.txt", N=1000,
+               binsize=1000000, missingrate=0.5)
+###>>> [ 322723 ] SNPs loaded, [ 249549 ] remaining after filtering [ missingrate=0.5 ]!
+###>>> [ 2068 ] unique [ binsize=1e+06 ] bins!
+write.table(res1, "cache/toton_ames_2068.csv", sep=",", row.names=FALSE, quote=FALSE)
+
+res2 <- assignp(frqfile="largedata/SeeDs/seeds_unimputed_mr6_fpsnp.txt", N=1000,
+                binsize=1000000, missingrate=0.5)
+###>>> [ 455738 ] SNPs loaded, [ 324940 ] remaining after filtering [ missingrate=0.5 ]!
+###>>> [ 2067 ] unique [ binsize=1e+06 ] bins!
+write.table(res2, "cache/toton_SeeDs_2068.csv", sep=",", row.names=FALSE, quote=FALSE)
+
+res3 <- assignp(frqfile="largedata/SeeDs/SeeDs-toton_unimputed_mr6_ames_fpsnp.txt", N=1000,
+                binsize=1000000, missingrate=0.5)
+###>>> [ 323920 ] SNPs loaded, [ 241821 ] remaining after filtering [ missingrate=0.5 ]!
+###>>> [ 2067 ] unique [ binsize=1e+06 ] bins!
+write.table(res3, "cache/SeeDs-toton_ames_2068.csv", sep=",", row.names=FALSE, quote=FALSE)
+
+
+
 ##################################################
 ## assign for totontepec
 
-run_assignp_nmarker <- function(assign_geno=geno, frq=frq){
+
+###
+
+run_assignp_nmarker <- function(question_geno=geno, frqtable=frq){
     myres <- data.frame()
-    for(n in 10:20){
-        for(i in 2:5){
-            mygeno <- assign_geno[, c(1, i)]
-            res <- assignp(frqfile=frq, N=1000,
-                           geno=mygeno, nmarker=n, binsize=1000000, missingrate=0.5)
-            myres <- rbind(myres, res)
+    for(n in seq(from=10, to=100, by=10)){
+        message(sprintf("###>>> running [ %s ] SNPs for all plants ...", n))
+        for(planti in 4:14){
+            mygeno <- question_geno[, c(1, planti)]
+            resp <- assignone(snpfq=frqtable, geno=mygeno, nmarker= n)
+            myres <- rbind(myres, resp)
             
-        }
+        }  
     }
     #### res summary
     #myres <- subset(myres, P1 !=0 & P2 != 0)
@@ -25,13 +47,12 @@ run_assignp_nmarker <- function(assign_geno=geno, frq=frq){
 }
 
 
-###
 totgeno <- read.table("largedata/SeeDs/Toton_geno_only.txt", header=TRUE)
-
-myres1 <- run_assignp_nmarker(assign_geno=totgeno, frq="largedata/SeeDs/Toton_unimputed_mr6_fpsnp.txt")
+myres1 <- run_assignp_nmarker(question_geno=totgeno, frqtable=res1)
 #myres2 <- run_assignp_nmarker(assign_geno=maize)
 
 
+save(list=c(), file="cache/likelihood.R")
 
 ##################
 

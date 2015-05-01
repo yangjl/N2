@@ -5,8 +5,7 @@
 
 ########################
 assignp <- function(frqfile="largedata/assignprb/usgbs_tot50k_5619.snpfrq", 
-                    geno=geno, N=1000,
-                    nmarker=100, binsize=1000000, missingrate=0.5){
+                    N=1000, binsize=1000000, missingrate=0.5){
     
     ### read in the data
     snpfq0 <- read.table(frqfile, header=TRUE)
@@ -46,8 +45,7 @@ assignp <- function(frqfile="largedata/assignprb/usgbs_tot50k_5619.snpfrq",
     #}
     
     ### start to assign probability for selected ind for each plant
-    resp <- assignone(snpfq=snpfq, geno=geno, nmarker=nmarker)
-    return(resp)
+    return(snpfq)
 }
 
 assignone <- function(snpfq=snpfq, geno=geno, nmarker=nmarker){
