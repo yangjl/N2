@@ -3,7 +3,9 @@
 ### purpose: format SNP for fastPHASE input
 
 ############
-selectSNP <- function(){
+selectSNP <- function(ols=1){
+    #note: ols=1 mex SNPs overlap with hmp2 maize data
+    #note: ols=2 mex overlap with HighLow landraces
     #Mexicana N=120
     mex <- read.table("data/Mexicana_TopStrand_FinalReport.txt", header=TRUE)
     mex <- as.data.frame(mex)
@@ -12,15 +14,30 @@ selectSNP <- function(){
     parv <- read.table("data/Parviglumis_TopStrand_FinalReport.txt", header=TRUE)
     parv <- as.data.frame(parv)
     message(sprintf("#>>> [ %s ] snps for [ %s ] Parviglumis plants", nrow(parv), ncol(parv)-1))
-    #landraces N=94
+    #landraces N=94 
     land <- read.table("data/HighLowSNPs_Final.txt", header=TRUE)
     land <- as.data.frame(land)
     message(sprintf("#>>> [ %s ] snps for [ %s ] Landraces plants", nrow(land), ncol(land)-1))
     
-    olsnp <- merge(mex[,1:2], land[, 1:2], by="id")
-    ol2 <- merge(olsnp, parv[, 1:2], by="id")
-    message(sprintf("#>>> outlist[[1]]: [ %s ] snps mex and land", nrow(olsnp) ))
-    message(sprintf("#>>> outlist[[2]]: [ %s ] snps mex, parv and land", nrow(ol2) ))
+    #maize N
+    maize <- read.delim("data/Hapmapv2_lines_55Kdata.txt", header=TRUE)
+    nms <- names(maize)
+    maize <- maize[, c("assayLSID", nms[grep("BKN", nms)])]
+    names(maize)[1] <- "id"
+    message(sprintf("#>>> [ %s ] snps for [ %s ] maize Landraces (hmp2) plants", nrow(maize), ncol(maize)-1))
+    
+    if(ols == 1){
+        olsnp <- merge(mex[,1:2], land[, 1:2], by="id")
+        ol2 <- merge(olsnp, parv[, 1:2], by="id")
+        message(sprintf("#>>> outlist[[1]]: [ %s ] snps mex and land", nrow(olsnp) ))
+        message(sprintf("#>>> outlist[[2]]: [ %s ] snps mex, parv and land", nrow(ol2) ))
+    }
+    if(ols == 2){
+        olsnp <- merge(mex[,1:2], maize[, 1:2], by="id")
+        ol2 <- merge(olsnp, parv[, 1:2], by="id")
+        message(sprintf("#>>> outlist[[1]]: [ %s ] snps mex and land", nrow(olsnp) ))
+        message(sprintf("#>>> outlist[[2]]: [ %s ] snps mex, parv and land", nrow(ol2) ))
+    }
     return(list(olsnp, ol2))
 }
 
