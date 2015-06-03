@@ -1,5 +1,6 @@
 ### Jinliang Yang
-### 1.5.2014
+### 1.5.2015
+### updated: 6/1/2015
 ### purpose: format SNP for fastPHASE input
 
 ############
@@ -25,6 +26,7 @@ selectSNP <- function(ols=1){
     maize <- maize[, c("assayLSID", nms[grep("BKN", nms)])]
     names(maize)[1] <- "id"
     message(sprintf("#>>> [ %s ] snps for [ %s ] maize Landraces (hmp2) plants", nrow(maize), ncol(maize)-1))
+    write.table(maize, "data/Hapmapv2_landrace23.txt", row.names=FALSE, sep="\t", quote=FALSE)
     
     if(ols == 1){
         olsnp <- merge(mex[,1:2], land[, 1:2], by="id")
@@ -35,8 +37,8 @@ selectSNP <- function(ols=1){
     if(ols == 2){
         olsnp <- merge(mex[,1:2], maize[, 1:2], by="id")
         ol2 <- merge(olsnp, parv[, 1:2], by="id")
-        message(sprintf("#>>> outlist[[1]]: [ %s ] snps mex and land", nrow(olsnp) ))
-        message(sprintf("#>>> outlist[[2]]: [ %s ] snps mex, parv and land", nrow(ol2) ))
+        message(sprintf("#>>> outlist[[1]]: [ %s ] snps mex and hapmap2 maize", nrow(olsnp) ))
+        message(sprintf("#>>> outlist[[2]]: [ %s ] snps mex, parv and hapmap2 maize", nrow(ol2) ))
     }
     return(list(olsnp, ol2))
 }
@@ -52,6 +54,8 @@ fp_by_chr <- function(infile="data/Mexicana_TopStrand_FinalReport.txt",
     mex2 <- merge(map, mex, by.x="snpid", by.y="id") 
     mex2 <- apply(mex2, 2, as.character)
     mex2[mex2=="--"] <- "??"
+    mex2[mex2=="NN"] <- "??"
+    
     mex2 <- as.data.frame(mex2)
     mex2 <- mex2[order(mex2$chr, mex2$physical), ]
     
@@ -70,12 +74,13 @@ main <- function(){
     map <- map[order(map$chr, map$physical), ]
     
     # only select SNPs that present on all three populations
-    snps <- selectSNP()
+    snps <- selectSNP(ols=2)
     #>>> [ 43694 ] snps for [ 120 ] Mexicanna plants
     #>>> [ 43701 ] snps for [ 130 ] Parviglumis plants
     #>>> [ 49284 ] snps for [ 94 ] Landraces plants
-    #>>> outlist[[1]]: [ 41340 ] snps mex and land
-    #>>> outlist[[2]]: [ 37621 ] snps mex, parv and land
+    #>>> [ 51077 ] snps for [ 23 ] maize Landraces (hmp2) plants
+    #>>> outlist[[1]]: [ 41279 ] snps mex and hapmap2 maize
+    #>>> outlist[[2]]: [ 37094 ] snps mex, parv and hapmap2 maize
     #library("lib/df2fp.R")
     fp_by_chr(infile="data/Mexicana_TopStrand_FinalReport.txt", 
               snps=snps[[2]],  map=map,
@@ -85,9 +90,9 @@ main <- function(){
               snps=snps[[2]],  map=map,
               outfile.base="largedata/fphase/parv_130")
     
-    fp_by_chr(infile="data/HighLowSNPs_Final.txt", 
+    fp_by_chr(infile="data/Hapmapv2_landrace23.txt", 
               snps=snps[[2]],  map=map,
-              outfile.base="largedata/fphase/land_94")
+              outfile.base="largedata/fphase/hmp2_land_23")
     
     map <- subset(map, snpid %in% snps[[2]]$id)
     map <- map[order(map$chr, map$physical), ]
@@ -100,8 +105,9 @@ map <- main()
 #>>> [ 43694 ] snps for [ 120 ] Mexicanna plants
 #>>> [ 43701 ] snps for [ 130 ] Parviglumis plants
 #>>> [ 49284 ] snps for [ 94 ] Landraces plants
-#>>> outlist[[1]]: [ 41340 ] snps mex and land
-#>>> outlist[[2]]: [ 37621 ] snps mex, parv and land
+#>>> [ 51077 ] snps for [ 23 ] maize Landraces (hmp2) plants
+#>>> outlist[[1]]: [ 41279 ] snps mex and hapmap2 maize
+#>>> outlist[[2]]: [ 37094 ] snps mex, parv and hapmap2 maize
 
 write.table(map, "largedata/fphase/snp50k_subset_info.csv", sep=",", row.names=FALSE, quote=FALSE)
 
