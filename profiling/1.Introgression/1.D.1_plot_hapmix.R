@@ -1,7 +1,6 @@
 # Jinliang Yang
 
-pdf("~/Desktop/test.pdf", width=7, height=3.5)
-par(mfrow=c(1, 2))
+#pdf("~/Desktop/test.pdf", width=7, height=3.5)
 
 
 getIntrogress <- function(chr=10, plotref1=TRUE, ...){
@@ -13,7 +12,7 @@ getIntrogress <- function(chr=10, plotref1=TRUE, ...){
         if(plotref1){
             d1$mex <- (2*d1$V1 + d1$V2)/2
         }else{
-            d1$mex <- d1$V3
+            d1$mex <- 1-(2*d1$V1 + d1$V2)/2
         }
         
         
@@ -29,9 +28,7 @@ getIntrogress <- function(chr=10, plotref1=TRUE, ...){
     plot(x=snpinfo$physical, y=snpinfo$mex, xlab="Mb", ylab="", ylim=c(0,1), type="h", col="maroon", ...)
 }
 
-
-getIntrogress(chr=1, plotref1 = TRUE, main="Chr1 maize") 
-
-
-
-dev.off()
+par(mfrow=c(2, 5))
+for(i in 1:10){
+    getIntrogress(chr= i, plotref1 = TRUE, main=paste0("Chr", i)) 
+}

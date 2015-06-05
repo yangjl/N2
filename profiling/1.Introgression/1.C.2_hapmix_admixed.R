@@ -16,13 +16,12 @@ for(chri in 1:10){
 
 
 ### Note the toton data have been fixed the top/bot issue in "2.assignment" folder.
-
-getToton <- function(totonfile="largedata/toton_translated.csv", chrnum=10,
-                     snpinfofile="largedata/hapmixrun/snp_maize_chr10.info",
-                     outgeno="largedata/hapmixrun/toton_chr10.out",
-                     outsnpinfo="largedata/hapmixrun/toton_chr10.snpinfo",
-                     outind="largedata/hapmixrun/toton_chr10.ind",
-                     outrate="largedata/hapmixrun/toton_chr10.rate"
+getToton <- function(totonfile="largedata/toton_translated.csv", chrnum=3,
+                     snpinfofile="largedata/hapmixrun/snp_maize_chr3.info",
+                     outgeno="largedata/hapmixrun/toton_chr3.out",
+                     outsnpinfo="largedata/hapmixrun/toton_chr3.snpinfo",
+                     outind="largedata/hapmixrun/toton_chr3.ind",
+                     outrate="largedata/hapmixrun/toton_chr3.rate"
                          ){
     
     #### get totontepec file
@@ -44,9 +43,10 @@ getToton <- function(totonfile="largedata/toton_translated.csv", chrnum=10,
         toton[toton[, pn1] == toton[, "alt"] & toton[, pn2] == toton[, "alt"], pn] <- 0
         toton[toton[, pn1] == toton[, "ref"] & toton[, pn2] == toton[, "alt"], pn] <- 1
         toton[toton[, pn1] == toton[, "alt"] & toton[, pn2] == toton[, "ref"], pn] <- 1 
+        toton <- toton[toton[,pn] == 0 | toton[,pn] ==1 | toton[,pn] ==2 | toton[,pn] ==9,]
     }
     
-    
+    #toton[toton[,12] != 0 & toton[,12] !=1 & toton[,12] !=2 & toton[,12] !=9,]
     ######
     tchr10 <- subset(toton, chr %in% paste0("chr", chrnum))
     snpinfo <- read.table(snpinfofile, header=FALSE)
@@ -55,7 +55,8 @@ getToton <- function(totonfile="largedata/toton_translated.csv", chrnum=10,
     subchr$V3 <- format(subchr$V3, digits=7)
     
     outsubchr <- subchr[, idx1:idx3]
-    outsubchr[outsubchr != 0 & outsubchr !=1 & outsubchr !=2 & outsubchr !=9] <- 9
+    #outsubchr[outsubchr != 0 & outsubchr !=1 & outsubchr !=2 & outsubchr !=9] <- 9
+    
     ### Genotype file
     write.table(outsubchr, outgeno, sep="", 
                 row.names=FALSE, col.names=FALSE, quote=FALSE)
@@ -68,21 +69,19 @@ getToton <- function(totonfile="largedata/toton_translated.csv", chrnum=10,
     write.table(ind, outind, sep="\t", 
                 row.names=FALSE, col.names=FALSE, quote=FALSE)
     
-    snpinfo <- snpinfo[order(snpinfo$V4), ]
+    #snpinfo <- snpinfo[order(snpinfo$V4), ]
     ### rate file: question, order and how to deal with subsetting
-    cat(paste0(":sites:", nrow(snpinfo)),
+    cat(paste0(":sites:", nrow(subchr)),
         file = outrate, sep="\n", append=FALSE
     )
-    cat(snpinfo$V4,
+    cat(subchr$V4,
         "\n",
         file=outrate, sep=" ", append=TRUE
     )
-    cat(format(snpinfo$V3, digits=7),
+    cat(format(subchr$V3, digits=7),
         "\n",
         file=outrate, sep=" ", append=TRUE
-    )
-    
-    
+    )  
 }
 
 
