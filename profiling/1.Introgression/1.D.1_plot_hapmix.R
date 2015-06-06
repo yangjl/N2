@@ -32,3 +32,4 @@ par(mfrow=c(2, 5))
 for(i in 1:10){
     getIntrogress(chr= i, plotref1 = TRUE, main=paste0("Chr", i)) 
 }
+getIntrogress(chr= 1, plotref1 = TRUE, main=paste0("Chr", 1)) 
