@@ -3,7 +3,7 @@
 # Translate SNP50k matrix to HapMix format
 
 
-for(chri in c(1:2, 6:10)){
+for(chri in 1:10){
     getToton(totonfile="largedata/toton_translated.csv", chrnum= chri,
              snpinfofile= paste0("largedata/hapmixrun/snp_maize_chr", chri,".info" ),
              outgeno= paste0("largedata/hapmixrun/toton_chr", chri, ".out" ),

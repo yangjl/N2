@@ -6,7 +6,7 @@ source("lib/fp2HapMix.R")
 ####
 
 
-for(chri in c(1,2, 6:10)){
+for(chri in 1:10){
     fp <- read_fastphase(fileName = paste0("largedata/fphase/hmp2_land_23_chr", chri, "_hapguess_switch.out"), chrnum= chri)
     out <- traslate2hapmix(fp = fp, startcol=8, outfile= paste0("largedata/hapmixrun/maizeland23_chr", chri, ".out"),
                            outinfo= paste0("largedata/hapmixrun/snp_maize_chr", chri, ".info"))

@@ -3,12 +3,12 @@
 #pdf("~/Desktop/test.pdf", width=7, height=3.5)
 
 
-getIntrogress <- function(chr=10, plotref1=TRUE, ...){
+getIntrogress <- function(chr=10, hpout="HPOUT100", plotref1=TRUE, ...){
     snpinfo <- read.table(paste0("largedata/hapmixrun/snp_maize_chr", chr, ".info"), header=FALSE)
     names(snpinfo) <- c("snpid", "chr", "genetic", "physical", "ref", "alt")
      
     for(i in 0:11){
-        d1 <- read.table(paste0("largedata/hapmixrun/HPOUT100/TOTON.LOCALANC.", i, ".", chr))
+        d1 <- read.table(paste0("largedata/hapmixrun/", hpout, "/TOTON.LOCALANC.", i, ".", chr))
         if(plotref1){
             d1$mex <- (2*d1$V1 + d1$V2)/2
         }else{
@@ -26,15 +26,20 @@ getIntrogress <- function(chr=10, plotref1=TRUE, ...){
     snpinfo$mex <- apply(snpinfo[, idx1:idx2], 1, mean)
     snpinfo <- snpinfo[order(snpinfo$genetic),]
     plot(x=snpinfo$physical, y=snpinfo$mex, xlab="Mb", ylab="", ylim=c(0,1), type="h", col="maroon", ...)
+    return(snpinfo)
 }
 
 par(mfrow=c(2, 5))
-for(i in c(1:2, 6:10)){
-    getIntrogress(chr= i, plotref1 = TRUE, main=paste0("Chr", i), bg = "yellow") 
+snpinfo <- data.frame()
+for(i in 1:10){
+    tem <- getIntrogress(chr= i, hpout="HPOUT10", plotref1 = TRUE, main=paste0("Chr", i))
+    snpinfo <- rbind(snpinfo, tem)
 }
-getIntrogress(chr= 1, plotref1 = TRUE, main=paste0("Chr", 1)) 
 
 
+
+
+################################################
 getInd <- function(chr=10, plotref1=TRUE, ...){
     snpinfo <- read.table(paste0("largedata/hapmixrun/snp_maize_chr", chr, ".info"), header=FALSE)
     names(snpinfo) <- c("snpid", "chr", "genetic", "physical", "ref", "alt")
@@ -62,5 +67,8 @@ getInd <- function(chr=10, plotref1=TRUE, ...){
         plot(x=snpinfo$physical, y=snpinfo[, idx], xlab="Mb", ylab="", ylim=c(0,1), type="h", col="maroon", ...)
     } 
 }
-
+###
 getInd(chr=2, plotref1=TRUE)
+
+getInd(chr=5, plotref1=TRUE)
+

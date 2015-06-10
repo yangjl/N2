@@ -8,7 +8,7 @@ selectSNP <- function(ols=1){
     #note: ols=1 mex SNPs overlap with hmp2 maize data
     #note: ols=2 mex overlap with HighLow landraces
     #Mexicana N=120
-    mex <- read.table("data/Mexicanna_ref_alt.txt", header=TRUE)
+    mex <- read.table("data/Mexicanna_RIMME0033_ref_alt.txt", header=TRUE)
     mex <- as.data.frame(mex)
     message(sprintf("#>>> [ %s ] snps for [ %s ] Mexicanna plants", nrow(mex), ncol(mex)-1))
     #Parviglumis N=130
@@ -74,7 +74,7 @@ main <- function(){
     map <- map[order(map$chr, map$physical), ]
     
     # only select SNPs that present on all three populations
-    snps <- selectSNP(ols=2)
+    snps <- selectSNP(ols=1)
     #>>> [ 43694 ] snps for [ 120 ] Mexicanna plants
     #>>> [ 43701 ] snps for [ 130 ] Parviglumis plants
     #>>> [ 49284 ] snps for [ 94 ] Landraces plants
@@ -82,7 +82,7 @@ main <- function(){
     #>>> outlist[[1]]: [ 41279 ] snps mex and hapmap2 maize
     #>>> outlist[[2]]: [ 37094 ] snps mex, parv and hapmap2 maize
     #library("lib/df2fp.R")
-    fp_by_chr(infile="data/Mexicana_TopStrand_FinalReport.txt", 
+    fp_by_chr(infile="data/Mexicanna_RIMME0033_ref_alt.txt", 
               snps=snps[[2]],  map=map,
               outfile.base="largedata/fphase/mex_120")
     

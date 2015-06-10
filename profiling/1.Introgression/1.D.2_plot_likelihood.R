@@ -22,5 +22,6 @@ getlikelihood <- function(){
     return(out)
 }
 
-
-plot(out$gen, out$loglike, type="l")
+out <- getlikelihood()
+par(mfrow=c(1,1))
+plot(out$gen, out$loglike, type="l", xlab="Generation", ylab="Loglikelihood")

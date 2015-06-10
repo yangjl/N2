@@ -35,12 +35,15 @@ run_hapmix <- function(gen=1:10, slurmsh_name="slurm-scripts/run_hapmix.sh"){
 #perl bin/runHapmix.pl hprun1_chr10.par
 generation <- 100
 run_hapmix(gen=generation, slurmsh_name="slurm-scripts/run_hapmix.sh")
-
+###>>> In this path: cd /home/jolyang/Documents/Github/N2
+###>>> [ note: --ntasks=INT, number of cup ]
+###>>> [ note: --mem=16000, 16G memory ]
+###>>> RUN: sbatch -p bigmemh --ntasks=1 slurm-scripts/run_hapmix.sh
 
 
 #perl bin/runHapmix.pl hprun1_chr10.par
 generation <- seq(100, 5000, by=100)
-run_hapmix(gen=generation[1:25], slurmsh_name="slurm-scripts/run_hapmix100-2500.sh")
+run_hapmix(gen=generation[c(10, 2:9, 11:25)], slurmsh_name="slurm-scripts/run_hapmix100-2500.sh")
 run_hapmix(gen=generation[26:50], slurmsh_name="slurm-scripts/run_hapmix2500-5000.sh")
 
 ###>>> In this path: cd /home/jolyang/Documents/Github/N2
@@ -48,7 +51,7 @@ run_hapmix(gen=generation[26:50], slurmsh_name="slurm-scripts/run_hapmix2500-500
 ###>>> [ note: --mem=16000, 16G memory ]
 ###>>> RUN: sbatch -p bigmemh --ntasks=2 slurm-scripts/run_hapmix.sh
 gen2 <- seq(2, 99, by=2)
-run_hapmix(gen=gen2[1:25], slurmsh_name="slurm-scripts/run_hapmix2-50.sh")
+run_hapmix(gen=gen2[c(5, 1:4, 6:25)], slurmsh_name="slurm-scripts/run_hapmix2-50.sh")
 run_hapmix(gen=gen2[26:49], slurmsh_name="slurm-scripts/run_hapmix52-98.sh")
 ###>>> RUN: sbatch -p bigmemh --ntasks=1 slurm-scripts/run_hapmix2-50.sh
 ###>>> RUN: sbatch -p bigmemh --ntasks=1 slurm-scripts/run_hapmix52-98.sh
