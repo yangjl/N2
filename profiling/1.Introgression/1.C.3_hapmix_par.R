@@ -33,6 +33,12 @@ run_hapmix <- function(gen=1:10, slurmsh_name="slurm-scripts/run_hapmix.sh"){
 }
 
 #perl bin/runHapmix.pl hprun1_chr10.par
+generation <- 100
+run_hapmix(gen=generation, slurmsh_name="slurm-scripts/run_hapmix.sh")
+
+
+
+#perl bin/runHapmix.pl hprun1_chr10.par
 generation <- seq(100, 5000, by=100)
 run_hapmix(gen=generation[1:25], slurmsh_name="slurm-scripts/run_hapmix100-2500.sh")
 run_hapmix(gen=generation[26:50], slurmsh_name="slurm-scripts/run_hapmix2500-5000.sh")
