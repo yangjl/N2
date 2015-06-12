@@ -12,13 +12,13 @@ selectSNP <- function(ols=1){
     mex <- as.data.frame(mex)
     message(sprintf("#>>> [ %s ] snps for [ %s ] Mexicanna plants", nrow(mex), ncol(mex)-1))
     #Parviglumis N=130
-    parv <- read.table("data/Parviglumis_TopStrand_FinalReport.txt", header=TRUE)
-    parv <- as.data.frame(parv)
-    message(sprintf("#>>> [ %s ] snps for [ %s ] Parviglumis plants", nrow(parv), ncol(parv)-1))
+    #parv <- read.table("data/Parviglumis_TopStrand_FinalReport.txt", header=TRUE)
+    #parv <- as.data.frame(parv)
+    #message(sprintf("#>>> [ %s ] snps for [ %s ] Parviglumis plants", nrow(parv), ncol(parv)-1))
     #landraces N=94 
-    land <- read.table("data/HighLowSNPs_Final.txt", header=TRUE)
-    land <- as.data.frame(land)
-    message(sprintf("#>>> [ %s ] snps for [ %s ] Landraces plants", nrow(land), ncol(land)-1))
+    #land <- read.table("data/HighLowSNPs_Final.txt", header=TRUE)
+    #land <- as.data.frame(land)
+    #message(sprintf("#>>> [ %s ] snps for [ %s ] Landraces plants", nrow(land), ncol(land)-1))
     
     #maize N
     maize <- read.delim("data/Hapmapv2_lines_55Kdata.txt", header=TRUE)
@@ -28,21 +28,13 @@ selectSNP <- function(ols=1){
     message(sprintf("#>>> [ %s ] snps for [ %s ] maize Landraces (hmp2) plants", nrow(maize), ncol(maize)-1))
     write.table(maize, "data/Hapmapv2_landrace23.txt", row.names=FALSE, sep="\t", quote=FALSE)
     
-    if(ols == 1){
-        olsnp <- merge(mex[,1:2], land[, 1:2], by="id")
-        ol2 <- merge(olsnp, parv[, 1:2], by="id")
-        message(sprintf("#>>> outlist[[1]]: [ %s ] snps mex and land", nrow(olsnp) ))
-        message(sprintf("#>>> outlist[[2]]: [ %s ] snps mex, parv and land", nrow(ol2) ))
-    }
-    if(ols == 2){
-        olsnp <- merge(mex[,1:2], maize[, 1:2], by="id")
-        ol2 <- merge(olsnp, parv[, 1:2], by="id")
-        message(sprintf("#>>> outlist[[1]]: [ %s ] snps mex and hapmap2 maize", nrow(olsnp) ))
-        message(sprintf("#>>> outlist[[2]]: [ %s ] snps mex, parv and hapmap2 maize", nrow(ol2) ))
-    }
-    return(list(olsnp, ol2))
+    olsnp <- merge(mex[,1:2], maize[, 1:2], by="id")
+    #ol2 <- merge(olsnp, parv[, 1:2], by="id")
+    message(sprintf("#>>> outlist[[1]]: [ %s ] snps mex and land", nrow(olsnp) ))
+    #message(sprintf("#>>> outlist[[2]]: [ %s ] snps mex, parv and land", nrow(ol2) ))
+    return(olsnp)
 }
-
+ol <- merge(mex, maize, by="id")
 ##################
 fp_by_chr <- function(infile="data/Mexicanna_ref_alt.txt", 
                       snps=snps[[2]], 

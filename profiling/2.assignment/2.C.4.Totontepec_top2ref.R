@@ -22,7 +22,9 @@ head(test)
 
 ############
 nrow(test[test$ref != test$B73,])
-head(test[test$ref != test$B73,c("snpid", "ref", "B73.MZ", "B73")], 10)
+head(test[test$ref != test$B73, c("snpid", "ref", "strand", "B73.MZ", "B73")], 10)
+
+diff <- test[test$ref != test$B73, c("snpid", "ref", "strand", "B73.MZ", "B73")]
 
 ### traslation
 test$B73t <- "N"

@@ -39,7 +39,9 @@ run_hapmix(gen=generation, slurmsh_name="slurm-scripts/run_hapmix.sh")
 ###>>> [ note: --ntasks=INT, number of cup ]
 ###>>> [ note: --mem=16000, 16G memory ]
 ###>>> RUN: sbatch -p bigmemh --ntasks=1 slurm-scripts/run_hapmix.sh
-
+generation <- 100
+run_hapmix(gen=5000, slurmsh_name="slurm-scripts/run_hapmix.sh")
+#
 
 #perl bin/runHapmix.pl hprun1_chr10.par
 generation <- seq(100, 5000, by=100)
