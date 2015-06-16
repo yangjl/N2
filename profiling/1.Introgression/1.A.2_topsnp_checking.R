@@ -1,5 +1,31 @@
 ### Jinliang Yang
+### checking toton, mex and hmp2 SNP encoding 
 
+
+toton <- read.table("data/BennettSNPs_FINAL.txt", header=TRUE)
+toton <- di2ha(mex=toton)
+idx1 <- which(names(toton) == "P1_1")
+
+####
+allmex <- read.table("data/Mexicana_TopStrand_FinalReport.txt", header=TRUE)
+idx <- grep("^RIMME0033", names(allmex))
+allop <- allmex[, c(1, idx)]
+mex <- di2ha(mex=allop)
+idx2 <- which(names(mex) == "RIMME0033.1_1")
+
+mexton <- merge(toton[, c(1, idx1:ncol(toton))], mex[, c(1, idx2:ncol(mex))], by.x="snpid", by.y="id")
+tem1 <- frq(df=mexton, cols=2:ncol(mexton), trow=1000)
+
+
+hmp2 <- read.csv("largedata/SNP55_811_samples_top.csv", header=TRUE)
+hmp2 <- di2ha(mex=hmp2[, c(1, 10:50)])
+idx3 <- which(names(hmp2) == "Tr.9.1.1.6_1" )
+hmpton <- merge(toton[, c(1, idx1:ncol(toton))], hmp2[, c(1, idx3:ncol(hmp2))], by.x="snpid", by.y="SNP.NAME")
+
+tem2 <- frq(df=hmpton, cols=2:ncol(hmpton), trow=1000)
+
+
+########################
 di2ha <- function(mex=mex){
     for(i in 2:ncol(mex)){
         mex$a1 <- gsub(".$", "", mex[,i])
@@ -12,24 +38,6 @@ di2ha <- function(mex=mex){
 
 
 
-toton <- read.table("data/BennettSNPs_FINAL.txt", header=TRUE)
-
-mex <- read.table("data/Mexicanna_RIMME0033_ref_alt.txt", header=TRUE)
-
-toton <- di2ha(mex=toton)
-idx1 <- which(names(toton) == "P1_1")
-idx2 <- which(names(mex) == "RIMME0033.1_1")
-
-mexton <- merge(toton[, c(11, idx1:ncol(toton))], mex[, c(1, idx2:ncol(mex))], by.x="names", by.y="id")
-
-
-hmp2 <- read.csv("largedata/SNP55_811_samples_top.csv", header=TRUE)
-hmp2 <- di2ha(mex=hmp2[, c(1, 10:50)])
-idx3 <- which(names(hmp2) == "Tr.9.1.1.6_1" )
-hmpton <- merge(toton[, c(1, idx1:ncol(toton))], hmp2[, c(1, idx3:ncol(hmp2))], by.x="snpid", by.y="SNP.NAME")
-
-tem <- frq(df=hmpton, cols=2:ncol(hmpton), trow=1000)
-
 #############
 frq <- function(df=mexton, cols=2:ncol(mexton), trow=1000){
     outfile <- data.frame()
@@ -37,9 +45,9 @@ frq <- function(df=mexton, cols=2:ncol(mexton), trow=1000){
         tem <- data.frame(id=df[i, 1], snps=t(df[i, cols]))
         names(tem) <- c("id", "snps")
         tb <- table(tem$snps)
-        if("N" %in% names(tb)){
-            n <- tb["N"]
-            idx <- which(names(tb) == "N")
+        if("-" %in% names(tb)){
+            n <- tb["-"]
+            idx <- which(names(tb) == "-")
             tb <- tb[-idx]
         }
         

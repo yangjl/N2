@@ -24,6 +24,7 @@ Get_SNP50k_Map <- function(){
 #####
 get_topbot <- function(){
     map2 <- read.csv("data/MaizeSNP50_A.csv")
+    #map3 <- read.delim("data/GPL17677-31783.txt", comment.char = "#", header=TRUE)
     ### change to TopGenomicSeq column rather than SourceSeq
     map2 <- map2[, c("Name", "Chr", "MapInfo", "TopGenomicSeq")]
     table(map2$Chr)
@@ -31,7 +32,7 @@ get_topbot <- function(){
     map2$alleles <- gsub("\\].*", "", map2$alleles)
     
     ### ref this one for http://www.illumina.com/documents/products/technotes/technote_topbot.pdf
-    
+    ### http://support.illumina.com/array/array_kits/maizesnp50_dna_analysis_kit/downloads.html
     map2 <- map2[, c("Name", "alleles")]
     names(map2)[2] <- "topbot"
     map2$topbot <- gsub("\\/", ",", map2$topbot)
@@ -63,3 +64,4 @@ write.table(snpall[, c("chr", "physical", "topbot")], "largedata/snp50k_topbot.t
             sep="\t", row.names=FALSE, col.names=FALSE, quote=FALSE)
 
 ####### Use top2ref.pl to do the transformation from top/bot to forward stand!!!!
+#### 1.5.15_intorgression.pdf

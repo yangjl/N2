@@ -8,25 +8,22 @@ selectSNP <- function(ols=1){
     #note: ols=1 mex SNPs overlap with hmp2 maize data
     #note: ols=2 mex overlap with HighLow landraces
     #Mexicana N=120
-    mex <- read.table("data/Mexicanna_RIMME0033_ref_alt.txt", header=TRUE)
-    mex <- as.data.frame(mex)
+    ##### Mexicanna lines
+    allmex <- read.table("data/Mexicana_TopStrand_FinalReport.txt", header=TRUE)
+    idx <- grep("^RIMME0033", names(allmex))
+    allop <- allmex[, c(1, idx)]
+    
+    mex <- as.data.frame(allop)
     message(sprintf("#>>> [ %s ] snps for [ %s ] Mexicanna plants", nrow(mex), ncol(mex)-1))
-    #Parviglumis N=130
-    #parv <- read.table("data/Parviglumis_TopStrand_FinalReport.txt", header=TRUE)
-    #parv <- as.data.frame(parv)
-    #message(sprintf("#>>> [ %s ] snps for [ %s ] Parviglumis plants", nrow(parv), ncol(parv)-1))
-    #landraces N=94 
-    #land <- read.table("data/HighLowSNPs_Final.txt", header=TRUE)
-    #land <- as.data.frame(land)
-    #message(sprintf("#>>> [ %s ] snps for [ %s ] Landraces plants", nrow(land), ncol(land)-1))
+    
     
     #maize N
-    maize <- read.delim("data/Hapmapv2_lines_55Kdata.txt", header=TRUE)
+    maize <- read.csv("largedata/SNP55_811_samples_top.csv", header=TRUE)
     nms <- names(maize)
-    maize <- maize[, c("assayLSID", nms[grep("BKN", nms)])]
+    maize <- maize[, c("SNP.NAME", nms[grep("^MR..$", nms)])]
     names(maize)[1] <- "id"
     message(sprintf("#>>> [ %s ] snps for [ %s ] maize Landraces (hmp2) plants", nrow(maize), ncol(maize)-1))
-    write.table(maize, "data/Hapmapv2_landrace23.txt", row.names=FALSE, sep="\t", quote=FALSE)
+    #write.table(maize, "data/Hapmapv2_landrace23.txt", row.names=FALSE, sep="\t", quote=FALSE)
     
     olsnp <- merge(mex[,1:2], maize[, 1:2], by="id")
     #ol2 <- merge(olsnp, parv[, 1:2], by="id")
@@ -77,10 +74,6 @@ main <- function(){
     fp_by_chr(infile="data/Mexicanna_RIMME0033_ref_alt.txt", 
               snps=snps[[2]],  map=map,
               outfile.base="largedata/fphase/mex_120")
-    
-    fp_by_chr(infile="data/Parviglumis_TopStrand_FinalReport.txt", 
-              snps=snps[[2]],  map=map,
-              outfile.base="largedata/fphase/parv_130")
     
     fp_by_chr(infile="data/Hapmapv2_landrace23.txt", 
               snps=snps[[2]],  map=map,

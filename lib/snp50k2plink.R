@@ -2,6 +2,10 @@
 
 
 ### test
+### module load plink/1.90 
+plink --file snp50k --missing-genotype N --make-bed --out snp50k
+convert_bim_allele.pl snp50k.bim MaizeSNP50_A.snptable -intype top -outtype forward -outfile test.bim
+
 snp50k2plink(infile="data/BennettSNPs_FINAL.txt", mapfile="data/snp50k.map", 
              outfile="largedata/runplink/snp50k", fid="Mex")
 
