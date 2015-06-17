@@ -10,7 +10,7 @@ getIntrogress <- function(chr=10, hpout="HPOUT100", plotref1=TRUE, ...){
      
     for(i in 0:11){
         d1 <- try(read.table(paste0("largedata/hapmixrun/", hpout, "/TOTON.LOCALANC.", i, ".", chr)))
-        if( exists(d1) ){
+        if( exists("d1") ){
             if(plotref1){
                 d1$mex <- (2*d1$V1 + d1$V2)/2
             }else{
@@ -26,14 +26,21 @@ getIntrogress <- function(chr=10, hpout="HPOUT100", plotref1=TRUE, ...){
     idx2 <- which(nms == "P11")
     snpinfo$mex <- apply(snpinfo[, idx1:idx2], 1, mean)
     snpinfo <- snpinfo[order(snpinfo$genetic),]
-    plot(x=snpinfo$physical, y=snpinfo$mex, xlab="Mb", ylab="", ylim=c(0,1), type="h", col="maroon", ...)
+    
+    snpinfo$maize <- 1-snpinfo$mex
+    badsnp <- read.table(paste("largedata/hapmixrun/badsnps", chr, sep="."))
+    snpinfo <- subset(snpinfo, !(snpid %in% badsnp$V1) )
+    
+    tab <- t(snpinfo[, c("mex", "maize")])
+    barplot(tab, xlab="", col=c("maroon","gold"), border=NA, space = 0)
+    #plot(x=snpinfo$genetic, y=snpinfo$mex, xlab="Mb", ylab="", ylim=c(0,1), type="h", col="maroon", ...)
     return(snpinfo)
 }
 
-par(mfrow=c(2, 5))
+par(mfrow=c(5, 2))
 snpinfo <- data.frame()
 for(i in 1:10){
-    tem <- getIntrogress(chr= i, hpout="HPOUT5000", plotref1 = TRUE, main=paste0("Chr", i))
+    tem <- getIntrogress(chr= i, hpout="HPOUT100", plotref1 = TRUE, main=paste0("Chr", i))
     snpinfo <- rbind(snpinfo, tem)
 }
 

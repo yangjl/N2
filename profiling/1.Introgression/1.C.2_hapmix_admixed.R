@@ -4,7 +4,7 @@
 
 
 for(chri in 1:10){
-    getToton(totonfile="largedata/toton_translated.csv", chrnum= chri,
+    getToton(chrnum= chri,
              snpinfofile= paste0("largedata/hapmixrun/snp_maize_chr", chri,".info" ),
              outgeno= paste0("largedata/hapmixrun/toton_chr", chri, ".out" ),
              outsnpinfo= paste0("largedata/hapmixrun/toton_chr", chri, ".snpinfo" ),
@@ -13,10 +13,20 @@ for(chri in 1:10){
     )
 }
 
+########################################################################################################################
+di2ha <- function(mex=mex){
+    for(i in 2:ncol(mex)){
+        mex$a1 <- gsub(".$", "", mex[,i])
+        names(mex)[ncol(mex)] <- paste(names(mex)[i], "1", sep="_")
+        mex$a2 <- gsub("^.", "", mex[,i])
+        names(mex)[ncol(mex)] <- paste(names(mex)[i], "2", sep="_")
+    }
+    return(mex)
+}
 
 
 ### Note the toton data have been fixed the top/bot issue in "2.assignment" folder.
-getToton <- function(totonfile="largedata/toton_translated.csv", chrnum=3,
+getToton <- function(chrnum=3,
                      snpinfofile="largedata/hapmixrun/snp_maize_chr3.info",
                      outgeno="largedata/hapmixrun/toton_chr3.out",
                      outsnpinfo="largedata/hapmixrun/toton_chr3.snpinfo",
@@ -25,7 +35,15 @@ getToton <- function(totonfile="largedata/toton_translated.csv", chrnum=3,
                          ){
     
     #### get totontepec file
-    toton <- read.csv(totonfile)
+    toton <- read.table("data/BennettSNPs_FINAL.txt", header=TRUE)
+    toton <- apply(toton, 2, as.character)
+    toton[toton=="--"] <- "NN"
+    toton <- as.data.frame(toton)
+    toton <- di2ha(mex=toton)
+    
+    info <- read.csv("largedata/fphase/snp50k_subset_info.csv")
+    toton <- merge(info, toton, by="snpid")
+    
     #### translate it into HAPMIX format
     nms <- names(toton)
     idx1 <- which(nms =="P1")
@@ -48,9 +66,9 @@ getToton <- function(totonfile="largedata/toton_translated.csv", chrnum=3,
     
     #toton[toton[,12] != 0 & toton[,12] !=1 & toton[,12] !=2 & toton[,12] !=9,]
     ######
-    tchr10 <- subset(toton, chr %in% paste0("chr", chrnum))
+    tchr10 <- subset(toton, chr == chrnum)
     snpinfo <- read.table(snpinfofile, header=FALSE)
-    subchr <- merge(tchr10, snpinfo, by.x="names", by.y="V1")
+    subchr <- merge(tchr10, snpinfo, by.x="snpid", by.y="V1")
     subchr <- subchr[order(subchr$V4),]
     subchr$V3 <- format(subchr$V3, digits=7)
     
@@ -61,7 +79,7 @@ getToton <- function(totonfile="largedata/toton_translated.csv", chrnum=3,
     write.table(outsubchr, outgeno, sep="", 
                 row.names=FALSE, col.names=FALSE, quote=FALSE)
     ### SNP file
-    write.table(subchr[, c("names", "V2", "V3", "V4", "V5", "V6")], outsnpinfo, sep="\t",
+    write.table(subchr[, c("snpid", "V2", "V3", "V4", "V5", "V6")], outsnpinfo, sep="\t",
                 row.names=FALSE, col.names=FALSE, quote=FALSE)
     
     ### individual file

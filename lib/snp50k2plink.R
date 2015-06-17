@@ -3,19 +3,20 @@
 
 ### test
 ### module load plink/1.90 
-plink --file snp50k --missing-genotype N --make-bed --out snp50k
-convert_bim_allele.pl snp50k.bim MaizeSNP50_A.snptable -intype top -outtype forward -outfile test.bim
+#plink --file snp50k --missing-genotype N --make-bed --out snp50k
+#convert_bim_allele.pl snp50k.bim MaizeSNP50_A.snptable -intype top -outtype forward -outfile test.bim
 
-snp50k2plink(infile="data/BennettSNPs_FINAL.txt", mapfile="data/snp50k.map", 
-             outfile="largedata/runplink/snp50k", fid="Mex")
+#snp50k2plink(infile="data/BennettSNPs_FINAL.txt", mapfile="data/snp50k.map", 
+#             outfile="largedata/runplink/snp50k", fid="Mex")
 
-snp50k2plink <- function(infile="data/BennettSNPs_FINAL.txt",
+snp50k2plink <- function(infiledf=toton,
                          mapfile="data/snp50k.map",
                          outfile="largedata/runplink/snp50k",
                          fid="Mex"){
     
     ### note: infile matrix, snpid and SNPs
-    toton <- read.table(infile, header=TRUE)
+    #toton <- read.table(infile, header=TRUE)
+    toton <- infiledf
     toton <- apply(toton, 2, as.character)
     toton[toton=="--"] <- "NN"
     toton <- as.data.frame(toton)

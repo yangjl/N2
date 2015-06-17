@@ -2,29 +2,49 @@
 ### checking toton, mex and hmp2 SNP encoding 
 
 
-toton <- read.table("data/BennettSNPs_FINAL.txt", header=TRUE)
-toton <- di2ha(mex=toton)
-idx1 <- which(names(toton) == "P1_1")
+source("lib/snp50k2plink.R")
 
-####
+### Totontepec
+toton <- read.table("data/BennettSNPs_FINAL.txt", header=TRUE)
+snp50k2plink(infiledf=toton, mapfile="data/snp50k.map", outfile="largedata/runplink/toton_snp50k", fid="toton")
+###>>> Merged [ 37568 ] SNPs for [ 12 ] plants
+###>>> write MAP file to [ largedata/runplink/toton_snp50k.map ]
+###>>> write PED file to [ largedata/runplink/toton_snp50k.ped ]
+
+### Mexicana
 allmex <- read.table("data/Mexicana_TopStrand_FinalReport.txt", header=TRUE)
 idx <- grep("^RIMME0033", names(allmex))
 allop <- allmex[, c(1, idx)]
-mex <- di2ha(mex=allop)
-idx2 <- which(names(mex) == "RIMME0033.1_1")
+names(allop)[1] <- "snpid"
+snp50k2plink(infiledf=allop, mapfile="data/snp50k.map", outfile="largedata/runplink/mex_snp50k", fid="mex")
+###>>> Merged [ 37568 ] SNPs for [ 12 ] plants
+###>>> write MAP file to [ largedata/runplink/mex_snp50k.map ]
+###>>> write PED file to [ largedata/runplink/mex_snp50k.ped ]
 
-mexton <- merge(toton[, c(1, idx1:ncol(toton))], mex[, c(1, idx2:ncol(mex))], by.x="snpid", by.y="id")
-tem1 <- frq(df=mexton, cols=2:ncol(mexton), trow=1000)
-
-
+### maize
 hmp2 <- read.csv("largedata/SNP55_811_samples_top.csv", header=TRUE)
+bkn <- read.csv("data/BKN_MR.csv")
+bkn$MR <- as.character(bkn$MR)
+bkn$MR <- gsub(" $", "", bkn$MR)
+maize <- subset(hmp2, B73ref != "--" & B73ref != "AC" & B73ref != "AG")
+maize <- maize[, c("SNP.NAME", as.character(bkn$MR))]
+names(maize)[1] <- "snpid"
+snp50k2plink(infiledf=maize, mapfile="data/snp50k.map", outfile="largedata/runplink/land_snp50k", fid="landrace")
+###>>> Merged [ 37565 ] SNPs for [ 23 ] plants
+###>>> write MAP file to [ largedata/runplink/land_snp50k.map ]
+###>>> write PED file to [ largedata/runplink/land_snp50k.ped ]
+
+#module load plink/1.90
+#plink --file land_snp50k --missing-genotype N --make-bed --out land_snp50k
+#plink --file mex_snp50k --missing-genotype N --make-bed --out mex_snp50k
+#plink --file toton_snp50k --missing-genotype N --make-bed --out toton_snp50k
+
+
+###
 hmp2 <- di2ha(mex=hmp2[, c(1, 10:50)])
 idx3 <- which(names(hmp2) == "Tr.9.1.1.6_1" )
 hmpton <- merge(toton[, c(1, idx1:ncol(toton))], hmp2[, c(1, idx3:ncol(hmp2))], by.x="snpid", by.y="SNP.NAME")
-
 tem2 <- frq(df=hmpton, cols=2:ncol(hmpton), trow=1000)
-
-
 ########################
 di2ha <- function(mex=mex){
     for(i in 2:ncol(mex)){
@@ -35,8 +55,6 @@ di2ha <- function(mex=mex){
     }
     return(mex)
 }
-
-
 
 #############
 frq <- function(df=mexton, cols=2:ncol(mexton), trow=1000){

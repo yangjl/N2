@@ -12,8 +12,8 @@ run_hapmix <- function(gen=1:10, slurmsh_name="slurm-scripts/run_hapmix.sh"){
         for(chri in 1:10){
             parfileid <- paste0("hprun_","gen", geni, "_chr", chri, ".par")
             hapmixPar(lambda=geni, parfile= parfileid, 
-                      ref1geno= paste0("mex120_chr", chri, ".out"), ref2geno= paste0("maizeland23_chr", chri, ".out"), 
-                      ref1snp= paste0("snp_mex_chr", chri, ".info"), ref2snp= paste0("snp_maize_chr", chri, ".info"),
+                      ref2geno= paste0("mex12_chr", chri, ".out"), ref1geno= paste0("maizeland23_chr", chri, ".out"), 
+                      ref2snp= paste0("snp_mex_chr", chri, ".info"), ref1snp= paste0("snp_maize_chr", chri, ".info"),
                       admixsnp= paste0("toton_chr", chri, ".snpinfo"), admixgeno= paste0("toton_chr", chri, ".out"), 
                       admixind= paste0("toton_chr", chri, ".ind"), 
                       ref1label="MEX", ref2label="MZ",
@@ -39,9 +39,8 @@ run_hapmix(gen=generation, slurmsh_name="slurm-scripts/run_hapmix.sh")
 ###>>> [ note: --ntasks=INT, number of cup ]
 ###>>> [ note: --mem=16000, 16G memory ]
 ###>>> RUN: sbatch -p bigmemh --ntasks=1 slurm-scripts/run_hapmix.sh
-generation <- 100
-run_hapmix(gen=5000, slurmsh_name="slurm-scripts/run_hapmix.sh")
-#
+
+run_hapmix(gen=10, slurmsh_name="slurm-scripts/run_hapmix.sh")
 
 #perl bin/runHapmix.pl hprun1_chr10.par
 generation <- seq(100, 5000, by=100)
