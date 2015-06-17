@@ -24,5 +24,6 @@ df2fp <- function(df=mex, outfile="largedata/test.out"){
             "\n",
             append=TRUE,file=outfile, sep="")
     }
-    message(sprintf("fastPHASE file output to: [ %s ] ", outfile))
+    message(sprintf("###>>> fastPHASE for [ %s ] SNPs [ %s ] plants to: [ %s ] ",  
+                    nrow(df), ncol(df)-7, outfile))
 }

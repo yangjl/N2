@@ -36,7 +36,8 @@ read_fastphase <- function(fileName = "largedata/fphase/land_94_chr10_hapguess_s
         }   
     }
     
-    print(sprintf("###>>> reading [ %s ] plants for [ %s ] SNPs for Chr [%s]", nline %/% 3, length(geno2), chrnum))
+    print(sprintf("###>>> reading [ %s ] plants for [ %s ] SNPs for Chr [%s]", 
+                  nline %/% 3, length(geno2), chrnum))
     return(res)
 }
 

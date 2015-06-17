@@ -2,50 +2,29 @@
 # 1.5.2014
 # run slurm codes for fastPHASE
 
-source("lib/setUpslurm.R")
 
-getshell <- function(basestring="parv_130_chr"){
-    mysh <- c()
+source("~/Documents/Github/zmSNPtools/Rcodes/setUpslurm.R")
+run_fastPHASE <- function(basestring="parv_130_chr"){
+    
+    dir="largedata/fphase/"
+    outsh <- c(paste("cd", dir))
     for(i in 1:10){
-        myinp <- paste0("fastPHASE -o", basestring, i, " -S1234 largedata/fphase/", basestring, i)
-        mysh <- c(mysh, myinp)
+        myinp <- paste0("fastPHASE -o", basestring, i, " -S1234 ", basestring, i)
+        outsh <- c(outsh, myinp)
     }
-    return(mysh)
+    
+    setUpslurm(slurmsh= paste0("slurm-scripts/run_",basestring,".sh"),
+               codesh= outsh,
+               wd=NULL, jobid=basestring, email="yangjl0930@gmail.com")
 }
 
-
-
 ##############################
-sh1 <- getshell(basestring="mex_120_chr")
-### hap phasing mexicana
-setUpslurm(slurmsh="largedata/fphase/mex_fp_slurm.sh",
-           oneline=TRUE,
-           codesh= sh1,
-           wd=NULL,
-           sbatho="/home/jolyang/Documents/Github/N2/slurm-log/testout-%j.txt",
-           sbathe="/home/jolyang/Documents/Github/N2/slurm-log/error-%j.txt",
-           sbathJ="mex_fp_bychr")
-#sbatch -p bigmemh largedata/fphase/mex_fp_slurm.sh
+run_fastPHASE(basestring="land23_chr")
+###>>> In this path: cd /home/jolyang/Documents/Github/N2
+###>>> [ note: --ntasks=INT, number of cup ]
+###>>> [ note: --mem=16000, 16G memory ]
+###>>> RUN: sbatch -p bigmemh --ntasks=1 slurm-scripts/run_land23_chr.sh
 
-### hap phasing Parviglumis (N=130)
-sh2 <- getshell(basestring="parv_130_chr")
-setUpslurm(slurmsh="largedata/fphase/parv_fp_slurm.sh",
-           oneline=TRUE,
-           codesh=sh2,
-           wd=NULL,
-           sbatho="/home/jolyang/Documents/Github/N2/slurm-log/testout-%j.txt",
-           sbathe="/home/jolyang/Documents/Github/N2/slurm-log/error-%j.txt",
-           sbathJ="parv_fp_bychr")
-#sbatch -p bigmemh largedata/fphase/parv_fp_slurm.sh
+run_fastPHASE(basestring="mex12_chr")
 
-### hap phasing Landraces (N=94)
-sh3 <- getshell(basestring="hmp2_land_23_chr")
-setUpslurm(slurmsh="largedata/fphase/land_fp_slurm.sh",
-           oneline=TRUE,
-           codesh=sh3,
-           wd=NULL,
-           sbatho="/home/jolyang/Documents/Github/N2/slurm-log/testout-%j.txt",
-           sbathe="/home/jolyang/Documents/Github/N2/slurm-log/error-%j.txt",
-           sbathJ="hmp2_fp_bychr")
-# sbatch -p bigmemh largedata/fphase/land_fp_slurm.sh
 
