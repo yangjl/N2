@@ -2,7 +2,7 @@
 ### March 25th, 2015
 ### purpose: convert fastphase format to HapMix format
 
-read_fastphase <- function(fileName = "largedata/fphase/land_94_chr10_hapguess_switch.out", chrnum=10){
+read_fastphase <- function(fileName = "largedata/fphase/land23_chr10_hapguess_switch.out", chrnum=10){
     
     ########
     map <- read.csv("largedata/fphase/snp50k_subset_info.csv", header=TRUE)

@@ -12,8 +12,8 @@ run_hapmix <- function(gen=1:10, slurmsh_name="slurm-scripts/run_hapmix.sh"){
         for(chri in 1:10){
             parfileid <- paste0("hprun_","gen", geni, "_chr", chri, ".par")
             hapmixPar(lambda=geni, parfile= parfileid, 
-                      ref2geno= paste0("mex12_chr", chri, ".out"), ref1geno= paste0("maizeland23_chr", chri, ".out"), 
-                      ref2snp= paste0("snp_mex_chr", chri, ".info"), ref1snp= paste0("snp_maize_chr", chri, ".info"),
+                      ref1geno= paste0("mex12_chr", chri, ".out"), ref2geno= paste0("maizeland23_chr", chri, ".out"), 
+                      ref1snp= paste0("snp_mex_chr", chri, ".info"), ref2snp= paste0("snp_maize_chr", chri, ".info"),
                       admixsnp= paste0("toton_chr", chri, ".snpinfo"), admixgeno= paste0("toton_chr", chri, ".out"), 
                       admixind= paste0("toton_chr", chri, ".ind"), 
                       ref1label="MEX", ref2label="MZ",

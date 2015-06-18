@@ -38,6 +38,7 @@ snp50k2plink(infiledf=maize, mapfile="data/snp50k.map", outfile="largedata/runpl
 #plink --file land_snp50k --missing-genotype N --make-bed --out land_snp50k
 #plink --file mex_snp50k --missing-genotype N --make-bed --out mex_snp50k
 #plink --file toton_snp50k --missing-genotype N --make-bed --out toton_snp50k
+#plink --bfile toton_snp50k --merge-list files.txt --make-bed --out all3_snp50k
 
 
 ###

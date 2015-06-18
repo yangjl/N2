@@ -28,19 +28,19 @@ getIntrogress <- function(chr=10, hpout="HPOUT100", plotref1=TRUE, ...){
     snpinfo <- snpinfo[order(snpinfo$genetic),]
     
     snpinfo$maize <- 1-snpinfo$mex
-    badsnp <- read.table(paste("largedata/hapmixrun/badsnps", chr, sep="."))
-    snpinfo <- subset(snpinfo, !(snpid %in% badsnp$V1) )
+    #badsnp <- read.table(paste("largedata/hapmixrun/badsnps", chr, sep="."))
+    #snpinfo <- subset(snpinfo, !(snpid %in% badsnp$V1) )
     
     tab <- t(snpinfo[, c("mex", "maize")])
-    barplot(tab, xlab="", col=c("maroon","gold"), border=NA, space = 0)
+    barplot(tab, xlab="", xaxt="n", col=c("maroon","gold"), border=NA, space = 0, ...)
     #plot(x=snpinfo$genetic, y=snpinfo$mex, xlab="Mb", ylab="", ylim=c(0,1), type="h", col="maroon", ...)
     return(snpinfo)
 }
 
-par(mfrow=c(5, 2))
+par(mfrow=c(2, 2))
 snpinfo <- data.frame()
-for(i in 1:10){
-    tem <- getIntrogress(chr= i, hpout="HPOUT100", plotref1 = TRUE, main=paste0("Chr", i))
+for(i in 9:10){
+    tem <- getIntrogress(chr= i, hpout="HPOUT10", plotref1 = TRUE, main=paste0("Chr", i))
     snpinfo <- rbind(snpinfo, tem)
 }
 

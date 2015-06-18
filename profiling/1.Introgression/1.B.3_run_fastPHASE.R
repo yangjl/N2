@@ -8,23 +8,31 @@ run_fastPHASE <- function(basestring="parv_130_chr"){
     
     dir="largedata/fphase/"
     outsh <- c(paste("cd", dir))
-    for(i in 1:10){
-        myinp <- paste0("fastPHASE -o", basestring, i, " -S1234 ", basestring, i)
-        outsh <- c(outsh, myinp)
-    }
     
+    myinp <- paste0("fastPHASE -o", basestring, " -S1234 ", basestring)
+    outsh <- c(outsh, myinp)
+
     setUpslurm(slurmsh= paste0("slurm-scripts/run_",basestring,".sh"),
                codesh= outsh,
                wd=NULL, jobid=basestring, email="yangjl0930@gmail.com")
 }
 
 ##############################
-run_fastPHASE(basestring="land23_chr")
+for(i in 1:10){
+    run_fastPHASE(basestring=paste0("land23_chr", i))
+}
+
 ###>>> In this path: cd /home/jolyang/Documents/Github/N2
 ###>>> [ note: --ntasks=INT, number of cup ]
 ###>>> [ note: --mem=16000, 16G memory ]
-###>>> RUN: sbatch -p bigmemh --ntasks=1 slurm-scripts/run_land23_chr.sh
+###>>> RUN: sbatch -p serial slurm-scripts/run_land23_chr1.sh
 
-run_fastPHASE(basestring="mex12_chr")
+for(i in 1:10){
+    run_fastPHASE(basestring=paste0("mex12_chr", i))
+}
+###>>> In this path: cd /home/jolyang/Documents/Github/N2
+###>>> [ note: --ntasks=INT, number of cup ]
+###>>> [ note: --mem=16000, 16G memory ]
+###>>> RUN: sbatch -p bigmemh slurm-scripts/run_mex12_chr1.sh
 
 
