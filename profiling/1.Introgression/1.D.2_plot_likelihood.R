@@ -5,28 +5,44 @@
 
 getlikelihood <- function(){
     out <- data.frame()
-    for(i in c(seq(2, 99, by=2), seq(100, 5000, by=100)) ){
-        pwd <- paste0("largedata/hapmixrun/HPOUT", i)
-        files <- list.files(path=pwd, pattern="loglhood")
-        
-        logl <- data.frame()
-        for(j in 1:length(files)){
-            temlog <- try(read.table(paste(pwd, files[j], sep="/"), header=FALSE))
-            logl <- rbind(temlog)
-        }
-        if(nrow(logl) > 1){
-            logmean <- mean(logl$V2)
-            logout <- data.frame(gen=i, loglike=logmean)
-            out <- rbind(out, logout)
-        }  
-    }
     
+    for(i in 1:10){
+        pwd <- paste0("largedata/hapmixrun", i)
+        
+        dirs <- list.dirs(path = pwd, full.names = TRUE, recursive = FALSE)
+        dirs <- dirs[grep("HPOUT", dirs)]
+        
+        for(k in 1:length(dirs)){
+            files <- list.files(path=dirs[k], pattern="loglhood")
+            logl <- data.frame()
+            for(j in 1:length(files)){
+                temlog <- try(read.table(paste(dirs[k], files[j], sep="/"), header=FALSE))
+                logl <- rbind(logl, temlog)
+            }
+            if(nrow(logl) > 1){
+                logmean <- mean(logl$V2)
+                logout <- data.frame(gen=dirs[k], loglike=logmean)
+                out <- rbind(out, logout)
+            }  
+        }
+        
+    }    
     return(out)
 }
 
 out <- getlikelihood()
+out$gen <- gsub(".*OUT", "", out$gen)
+out$gen <- as.numeric(as.character(out$gen))
+out <- out[order(out$gen),]
+
+pdf("graphs/gen_likehood.pdf", width=7, height=7)
 par(mfrow=c(1,1))
-plot(out$gen, out$loglike, type="l", xlab="Generation", ylab="Loglikelihood")
+plot(out$gen, out$loglike, type="l", xlab="Generations", ylab="Loglikelihood", lwd=3)
+idx <- which.max(out$loglike)
+abline(h=out$loglike[idx], lty=2)
+abline(v=out$gen[idx], col="red")
+dev.off()
+
 
 #out <- subset(out, gen > 90)
 lo <- loess( out$loglike ~ out$gen)

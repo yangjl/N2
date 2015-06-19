@@ -1,5 +1,5 @@
-# Jinliang Yang
-
+## Jinliang Yang
+## updated: June 16th, 2015
 #pdf("~/Desktop/test.pdf", width=7, height=3.5)
 
 
@@ -38,14 +38,37 @@ getIntrogress <- function(chr=10, hpout="HPOUT100", plotref1=TRUE, ...){
     return(snpinfo)
 }
 
-par(mfrow=c(2, 2))
+#############
+pdf("graphs/introgression.pdf", height=3, width=10)
+par(mfrow=c(1, 1))
 snpinfo <- data.frame()
 for(i in 1:10){
-    tem <- getIntrogress(chr= i, hpout="HPOUT10", plotref1 = TRUE, main=paste0("Chr", i))
+    tem <- getIntrogress(chr= i, hpout="HPOUT1610", plotref1 = TRUE, main=paste0("Chr", i))
     snpinfo <- rbind(snpinfo, tem)
 }
+dev.off()
 
-head(snpinfo[, c("snpid", "mex")])
+
+###########
+jn <- read.csv("data/jacknife_fdr.csv")
+info2 <- merge(snpinfo, jn[, c("snpid", "mex")], by="snpid")
+info2$mex <- info2$mex.x - info2$mex.y
+info2[info2$mex <0, ]$mex <- 0
+info2$maize <- 1 - info2$mex
+info2 <- info2[order(info2$chr, info2$physical),]
+
+pdf("graphs/intro_jacknife.pdf", height=3, width=10)
+par(mfrow=c(1, 1))
+for(i in 1:10){
+    tem <- subset(info2, chr == i)
+    tab <- t(tem[, c("mex", "maize")])
+    #barplot()
+    barplot(tab, xlab="", xaxt="n", col=c("maroon","gold"), border=NA, space = 0)
+}
+dev.off()
+
+
+
 
 
 ################################################
