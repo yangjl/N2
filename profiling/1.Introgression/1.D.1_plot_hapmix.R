@@ -16,16 +16,17 @@ getIntrogress <- function(chr=10, hpout="HPOUT100", plotref1=TRUE, ...){
             }else{
                 d1$mex <- 1-(2*d1$V1 + d1$V2)/2
             }
-            d1$snpid <- snpinfo$snpid
-            names(d1)[4] <- paste0("P", i)
-            snpinfo <- merge(snpinfo, d1[, c(4,5)], by="snpid")
+            #d1$snpid <- snpinfo$snpid
+            
+            snpinfo <- cbind(snpinfo, d1[, 4])
+            names(snpinfo)[ncol(snpinfo)] <- paste0("P", i)
         }  
     }
     nms <- names(snpinfo)
     idx1 <- which(nms == "P0")
     idx2 <- which(nms == "P11")
     snpinfo$mex <- apply(snpinfo[, idx1:idx2], 1, mean)
-    snpinfo <- snpinfo[order(snpinfo$genetic),]
+    snpinfo <- snpinfo[order(snpinfo$physical),]
     
     snpinfo$maize <- 1-snpinfo$mex
     #badsnp <- read.table(paste("largedata/hapmixrun/badsnps", chr, sep="."))
@@ -39,12 +40,12 @@ getIntrogress <- function(chr=10, hpout="HPOUT100", plotref1=TRUE, ...){
 
 par(mfrow=c(2, 2))
 snpinfo <- data.frame()
-for(i in 9:10){
+for(i in 1:10){
     tem <- getIntrogress(chr= i, hpout="HPOUT10", plotref1 = TRUE, main=paste0("Chr", i))
     snpinfo <- rbind(snpinfo, tem)
 }
 
-
+head(snpinfo[, c("snpid", "mex")])
 
 
 ################################################

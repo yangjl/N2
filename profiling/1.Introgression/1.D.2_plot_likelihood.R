@@ -1,4 +1,6 @@
-
+### Jinliang Yang
+### June 18th, 2015
+### try all the generations and plot the likelihood
 
 
 getlikelihood <- function(){
@@ -25,3 +27,14 @@ getlikelihood <- function(){
 out <- getlikelihood()
 par(mfrow=c(1,1))
 plot(out$gen, out$loglike, type="l", xlab="Generation", ylab="Loglikelihood")
+
+#out <- subset(out, gen > 90)
+lo <- loess( out$loglike ~ out$gen)
+plot(out$gen, out$loglike, xlab="Generation", ylab="Loglikelihood")
+lines(predict(lo), col='red', lwd=2)
+
+smoothingSpline = smooth.spline(x=out$gen, y=out$loglike, spar=0.35)
+plot(x=out$gen,y=out$loglike)
+lines(smoothingSpline)
+
+
