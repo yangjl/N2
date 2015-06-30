@@ -7,6 +7,6 @@ slurm-log/
 packrat/lib*/
 packrat/src/
 .bbl
-.blg
-.log
-.gz
+*.blg
+*.log
+*synctex.gz
