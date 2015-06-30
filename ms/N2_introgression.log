@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  29 JUN 2015 16:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  29 JUN 2015 17:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -680,30 +680,30 @@ LaTeX Info: Redefining \\ on input line 3056.
 (./N2_introgression.aux)
 \openout1 = `N2_introgression.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 51.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 51.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 53.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 53.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Try loading font information for T1+ppl on input line 51.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Try loading font information for T1+ppl on input line 53.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/t1ppl.fd
 File: t1ppl.fd 2001/06/04 font definitions for T1/ppl.
@@ -777,7 +777,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box33
-Package hyperref Info: Link coloring OFF on input line 51.
+Package hyperref Info: Link coloring OFF on input line 53.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -787,464 +787,469 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count119
 )
-LaTeX Info: Redefining \ref on input line 51.
-LaTeX Info: Redefining \pageref on input line 51.
-LaTeX Info: Redefining \nameref on input line 51.
-LaTeX Font Info:    Try loading font information for OT1+ppl on input line 59.
+LaTeX Info: Redefining \ref on input line 53.
+LaTeX Info: Redefining \pageref on input line 53.
+LaTeX Info: Redefining \nameref on input line 53.
+LaTeX Font Info:    Try loading font information for OT1+ppl on input line 61.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1ppl.fd
 File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
 )
-LaTeX Font Info:    Try loading font information for OML+zplm on input line 59.
+LaTeX Font Info:    Try loading font information for OML+zplm on input line 61.
 
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/omlzplm.fd
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMS+zplm on input line 59.
+LaTeX Font Info:    Try loading font information for OMS+zplm on input line 61.
 
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/omszplm.fd
 File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMX+zplm on input line 59.
+LaTeX Font Info:    Try loading font information for OMX+zplm on input line 61.
 
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/omxzplm.fd
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
-LaTeX Font Info:    Try loading font information for OT1+zplm on input line 59.
+LaTeX Font Info:    Try loading font information for OT1+zplm on input line 61.
 
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1zplm.fd
 File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
 )
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <10> not available
-(Font)              Font shape `T1/ppl/b/n' tried instead on input line 63.
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 65.
  [1
 
 {/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/ppl/b/n' tried instead on input line 81.
-LaTeX Font Info:    Try loading font information for T1+cmss on input line 81.
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 83.
+LaTeX Font Info:    Try loading font information for T1+cmss on input line 83.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/t1cmss.fd
 File: t1cmss.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 ) [2] [3]
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <12> not available
-(Font)              Font shape `T1/ppl/b/n' tried instead on input line 118.
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 120.
 
 
 Package natbib Warning: Citation `Ross1993Effect-of-a-fou' on page 4 undefined 
-on input line 127.
+on input line 129.
 
 
 Package natbib Warning: Citation `RossShoemaker2008NumberOfFounders' on page 4 
-undefined on input line 127.
+undefined on input line 129.
 
 
 Package natbib Warning: Citation `jouvenaz1977' on page 4 undefined on input li
-ne 129.
+ne 131.
 
 
 Package natbib Warning: Citation `Shoemaker:2006PopGenetics' on page 4 undefine
-d on input line 138.
+d on input line 140.
 
 LaTeX Font Info:    Font shape `T1/ppl/bx/it' in size <10> not available
-(Font)              Font shape `T1/ppl/b/it' tried instead on input line 142.
+(Font)              Font shape `T1/ppl/b/it' tried instead on input line 144.
 
 Package natbib Warning: Citation `ross:1997genetics' on page 4 undefined on inp
-ut line 145.
+ut line 147.
 
 
 Package natbib Warning: Citation `KellerGreenBeard1998' on page 4 undefined on 
-input line 145.
+input line 147.
 
 
 Package natbib Warning: Citation `kriegerRoss02' on page 4 undefined on input l
-ine 145.
+ine 147.
 
 
 Package natbib Warning: Citation `Shoemaker:2006PopGenetics' on page 4 undefine
-d on input line 145.
+d on input line 147.
 
 [4]
 
 Package natbib Warning: Citation `Vargo1999PhysiolEntomol' on page 5 undefined 
-on input line 157.
+on input line 159.
 
 
 Package natbib Warning: Citation `FletcherCherixBlum1983' on page 5 undefined o
-n input line 157.
+n input line 159.
 
 
 Package natbib Warning: Citation `Tschinkel:2006book' on page 5 undefined on in
-put line 163.
+put line 165.
 
 
 Package natbib Warning: Citation `Blum1981Pheromonal-Cont' on page 5 undefined 
-on input line 171.
+on input line 173.
 
 
 Package natbib Warning: Citation `Burns:2007fk' on page 5 undefined on input li
-ne 171.
+ne 173.
 
-LaTeX Font Info:    Try loading font information for TS1+ppl on input line 180.
+LaTeX Font Info:    Try loading font information for TS1+ppl on input line 182.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ts1ppl.fd
 File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
 )
 
 Package natbib Warning: Citation `kendziorski:2005' on page 5 undefined on inpu
-t line 189.
+t line 191.
 
 
 Package natbib Warning: Citation `McGraw2004MatingSpermACPsFlies' on page 5 und
-efined on input line 194.
+efined on input line 196.
 
 
 Package natbib Warning: Citation `grozingerMatingChanges' on page 5 undefined o
-n input line 194.
+n input line 196.
 
 
 Package natbib Warning: Citation `Renn2008Fish-and-chips' on page 5 undefined o
-n input line 194.
+n input line 196.
 
 
 Package natbib Warning: Citation `Roberge2008' on page 5 undefined on input lin
-e 194.
+e 196.
 
 
 Package natbib Warning: Citation `wang-plosgenetic' on page 5 undefined on inpu
-t line 194.
+t line 196.
 
 
 Package natbib Warning: Citation `wangESTs2007' on page 5 undefined on input li
-ne 204.
+ne 206.
 
 
 Package natbib Warning: Citation `wang-plosgenetic' on page 5 undefined on inpu
-t line 205.
+t line 207.
 
 [5]
 
 Package natbib Warning: Citation `smyth:2005' on page 6 undefined on input line
- 215.
-
-
-Package natbib Warning: Citation `smyth2004limma' on page 6 undefined on input 
-line 215.
-
-
-Package natbib Warning: Citation `bioc2004' on page 6 undefined on input line 2
-15.
+ 217.
 
 
 Package natbib Warning: Citation `smyth2004limma' on page 6 undefined on input 
 line 217.
 
 
+Package natbib Warning: Citation `bioc2004' on page 6 undefined on input line 2
+17.
+
+
+Package natbib Warning: Citation `smyth2004limma' on page 6 undefined on input 
+line 219.
+
+
 Package natbib Warning: Citation `r_reference:2007' on page 6 undefined on inpu
-t line 217.
+t line 219.
 
 
 Package natbib Warning: Citation `Smyth2003Normalization-o' on page 6 undefined
- on input line 220.
+ on input line 222.
 
 
 Package natbib Warning: Citation `arrayQualityMetricsKauffmann2009' on page 6 u
-ndefined on input line 221.
+ndefined on input line 223.
 
 
 Package natbib Warning: Citation `wangESTs2007' on page 6 undefined on input li
-ne 223.
+ne 225.
 
 
 Package natbib Warning: Citation `BenjaminiHochberg1995' on page 6 undefined on
- input line 236.
+ input line 238.
 
 
 Package natbib Warning: Citation `grozingerMatingChanges' on page 6 undefined o
-n input line 242.
+n input line 244.
 
 
 Package natbib Warning: Citation `wang-plosgenetic' on page 6 undefined on inpu
-t line 242.
+t line 244.
 
 
 Package natbib Warning: Citation `Alaux:2009qv' on page 6 undefined on input li
-ne 242.
+ne 244.
 
 
 Package natbib Warning: Citation `wangESTs2007' on page 6 undefined on input li
-ne 249.
+ne 251.
 
 
 Package natbib Warning: Citation `GeneOntology200' on page 6 undefined on input
- line 259.
+ line 261.
 
 
 Package natbib Warning: Citation `Wurm:2009wo' on page 6 undefined on input lin
-e 260.
+e 262.
 
 [6]
 
 Package natbib Warning: Citation `topGo2006' on page 7 undefined on input line 
-272.
+274.
 
 
 Package natbib Warning: Citation `LawniczakBegun2004FlyMating' on page 7 undefi
-ned on input line 287.
+ned on input line 289.
 
 
 Package natbib Warning: Citation `McGraw2004MatingSpermACPsFlies' on page 7 und
-efined on input line 287.
+efined on input line 289.
 
 
 Package natbib Warning: Citation `Rogers2008AnophelesMating' on page 7 undefine
-d on input line 287.
+d on input line 289.
 
 
 Package natbib Warning: Citation `grozingerMatingChanges' on page 7 undefined o
-n input line 287.
-
-
-Package natbib Warning: Citation `Grozinger:2007brainVirginQ.SterileAndReproduc
-tiveWorkers' on page 7 undefined on input line 287.
+n input line 289.
 
 
 Package natbib Warning: Citation `Grozinger:2007brainVirginQ.SterileAndReproduc
 tiveWorkers' on page 7 undefined on input line 289.
 
 
+Package natbib Warning: Citation `Grozinger:2007brainVirginQ.SterileAndReproduc
+tiveWorkers' on page 7 undefined on input line 291.
+
+
 Package natbib Warning: Citation `grozingerMatingChanges' on page 7 undefined o
-n input line 290.
+n input line 292.
 
 
 Package natbib Warning: Citation `LawniczakBegun2004FlyMating' on page 7 undefi
-ned on input line 291.
+ned on input line 293.
 
 
 Package natbib Warning: Citation `McGraw2004MatingSpermACPsFlies' on page 7 und
-efined on input line 291.
+efined on input line 293.
 
 
 Package natbib Warning: Citation `Rogers2008AnophelesMating' on page 7 undefine
-d on input line 291.
+d on input line 293.
 
 
 Package natbib Warning: Citation `Biomart2009' on page 7 undefined on input lin
-e 292.
+e 294.
 
 
 Package natbib Warning: Citation `inparanoid' on page 7 undefined on input line
- 298.
+ 300.
 
 [7]
 
 Package natbib Warning: Citation `Grozinger:2007brainVirginQ.SterileAndReproduc
-tiveWorkers' on page 8 undefined on input line 325.
+tiveWorkers' on page 8 undefined on input line 327.
 
 
 Package natbib Warning: Citation `grozingerMatingChanges' on page 8 undefined o
-n input line 332.
+n input line 334.
 
 
 Package natbib Warning: Citation `Rogers2008AnophelesMating' on page 8 undefine
-d on input line 344.
+d on input line 346.
 
 
 Package natbib Warning: Citation `McGraw2004MatingSpermACPsFlies' on page 8 und
-efined on input line 351.
+efined on input line 353.
 
 
 Package natbib Warning: Citation `LawniczakBegun2004FlyMating' on page 8 undefi
-ned on input line 352.
+ned on input line 354.
 
 [8] [9]
 
 Package natbib Warning: Citation `Grozinger:2007brainVirginQ.SterileAndReproduc
-tiveWorkers' on page 10 undefined on input line 434.
+tiveWorkers' on page 10 undefined on input line 436.
 
 
 Package natbib Warning: Citation `grozingerMatingChanges' on page 10 undefined 
-on input line 434.
+on input line 436.
 
 
 Package natbib Warning: Citation `grozingerMatingChanges' on page 10 undefined 
-on input line 448.
+on input line 450.
 
 
-Overfull \hbox (1.43068pt too wide) in paragraph at lines 447--458
+Overfull \hbox (1.43068pt too wide) in paragraph at lines 449--460
 []\T1/ppl/m/n/10 The other study iden-ti-fied genes dif-fer-en-tially ex-presse
 d be-tween vir-gin and mated honey bee queens
  []
 
 
 Package natbib Warning: Citation `Rogers2008AnophelesMating' on page 10 undefin
-ed on input line 468.
+ed on input line 470.
 
 
 Package natbib Warning: Citation `LawniczakBegun2004FlyMating' on page 10 undef
-ined on input line 482.
+ined on input line 484.
 
 
 Package natbib Warning: Citation `McGraw2004MatingSpermACPsFlies' on page 10 un
-defined on input line 482.
+defined on input line 484.
 
 
 Package natbib Warning: Citation `McGraw2004MatingSpermACPsFlies' on page 10 un
-defined on input line 486.
+defined on input line 488.
 
 [10]
 
 Package natbib Warning: Citation `CytochromeP450Montellano2005' on page 11 unde
-fined on input line 513.
+fined on input line 515.
 
 
 Package natbib Warning: Citation `GotzekReview2007' on page 11 undefined on inp
-ut line 526.
+ut line 528.
 
 
 Package natbib Warning: Citation `OBPReviewPelosi2005' on page 11 undefined on 
-input line 526.
+input line 528.
 
 
 Package natbib Warning: Citation `KellerGreenBeard1998' on page 11 undefined on
- input line 530.
+ input line 532.
 
 
 Package natbib Warning: Citation `GotzekReview2007' on page 11 undefined on inp
-ut line 530.
+ut line 532.
 
 
 Package natbib Warning: Citation `Ross:1998pi' on page 11 undefined on input li
-ne 533.
+ne 535.
 
 
 Package natbib Warning: Citation `KellerGreenBeard1998' on page 11 undefined on
- input line 533.
+ input line 535.
 
 
 Package natbib Warning: Citation `ross:2002' on page 11 undefined on input line
- 533.
+ 535.
 
 
 Package natbib Warning: Citation `kriegerRoss02' on page 11 undefined on input 
-line 533.
+line 535.
 
 
 Package natbib Warning: Citation `GotzekRoss2009' on page 11 undefined on input
- line 533.
+ line 535.
 
 [11]
 
 Package natbib Warning: Citation `Robinson1997Juvenile-hormon' on page 12 undef
-ined on input line 547.
+ined on input line 549.
 
 
 Package natbib Warning: Citation `brentVargoJIP2003' on page 12 undefined on in
-put line 549.
+put line 551.
 
 
 Package natbib Warning: Citation `VargoLaurel1994' on page 12 undefined on inpu
-t line 552.
+t line 554.
 
 
 Package natbib Warning: Citation `Burns2002Identification-' on page 12 undefine
-d on input line 554.
+d on input line 556.
 
 
 Package natbib Warning: Citation `Bloch2000JH-JIP' on page 12 undefined on inpu
-t line 565.
+t line 567.
 
 
 Package natbib Warning: Citation `Kort1981JHReview' on page 12 undefined on inp
-ut line 568.
+ut line 570.
 
 
 Package natbib Warning: Citation `Tobe1985CorpusAllatum' on page 12 undefined o
-n input line 568.
+n input line 570.
 
 
 Package natbib Warning: Citation `Tschinkel:2006book' on page 12 undefined on i
-nput line 573.
+nput line 575.
 
 
 Package natbib Warning: Citation `TianVinsonCoates7genes.2004' on page 12 undef
-ined on input line 574.
+ined on input line 576.
 
 
 Package natbib Warning: Citation `jemielityCasteDifferences' on page 12 undefin
-ed on input line 586.
+ed on input line 588.
 
 
 Package natbib Warning: Citation `Creg2006' on page 12 undefined on input line 
-611.
+613.
 
 [12]
 
 Package natbib Warning: Citation `CellBiologyBook2000' on page 13 undefined on 
-input line 624.
+input line 626.
 
 
 Package natbib Warning: Citation `Buckley2000RegulationNeuronTrafficking' on pa
-ge 13 undefined on input line 626.
+ge 13 undefined on input line 628.
 
 
 Package natbib Warning: Citation `mediator2005' on page 13 undefined on input l
-ine 639.
+ine 641.
 
 
 Package natbib Warning: Citation `TianVinsonCoates7genes.2004' on page 13 undef
-ined on input line 643.
+ined on input line 645.
 
 
 Package natbib Warning: Citation `heteroChromatin2006' on page 13 undefined on 
-input line 646.
+input line 648.
 
 
 Package natbib Warning: Citation `nucleoplasmins2007' on page 13 undefined on i
-nput line 646.
+nput line 648.
 
 
 Package natbib Warning: Citation `VargoLaurel1994' on page 13 undefined on inpu
-t line 648.
+t line 650.
 
 
 Package natbib Warning: Citation `Vargo1999PhysiolEntomol' on page 13 undefined
- on input line 648.
+ on input line 650.
 
-[13] (./N2_introgression.bbl)
+[13] (./N2_introgression.bbl [14]
+LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <24.88> not available
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 1.
+ (./englbst.tex))
 
-Package natbib Warning: Citation `Barker1979MuscleHistolysis' on page 14 undefi
-ned on input line 700.
-
-
-Package natbib Warning: Citation `Blum1981Pheromonal-Cont' on page 14 undefined
- on input line 700.
-
-
-Package natbib Warning: Citation `Blum1983Regulation-of-Q' on page 14 undefined
- on input line 700.
+Package natbib Warning: Citation `Barker1979MuscleHistolysis' on page 15 undefi
+ned on input line 702.
 
 
-Package natbib Warning: Citation `VargoLaurel1994' on page 14 undefined on inpu
-t line 700.
+Package natbib Warning: Citation `Blum1981Pheromonal-Cont' on page 15 undefined
+ on input line 702.
 
 
-Package natbib Warning: Citation `Vargo1999PhysiolEntomol' on page 14 undefined
- on input line 700.
+Package natbib Warning: Citation `Blum1983Regulation-of-Q' on page 15 undefined
+ on input line 702.
 
 
-Package natbib Warning: Citation `Burns:2007fk' on page 14 undefined on input l
-ine 700.
+Package natbib Warning: Citation `VargoLaurel1994' on page 15 undefined on inpu
+t line 702.
 
-[14]
+
+Package natbib Warning: Citation `Vargo1999PhysiolEntomol' on page 15 undefined
+ on input line 702.
+
+
+Package natbib Warning: Citation `Burns:2007fk' on page 15 undefined on input l
+ine 702.
+
+[15
+
+]
 
 LaTeX Warning: File `"/Users/yannickwurm/Dropbox/DealationProjAnalysis/2009 - P
 aper/timecoursePaperResubmission/images/timelineHorizontal169mm".eps' not found
- on input line 730.
+ on input line 732.
 
 Package epstopdf Info: Source file: <"/Users/yannickwurm/Dropbox/DealationProjA
 nalysis/2009 - Paper/timecoursePaperResubmission/images/timelineHorizontal169mm
@@ -1257,7 +1262,7 @@ x/DealationProjAnalysis/2009 - Paper/timecoursePaperResubmission/images/timelin
 eHorizontal169mm"-eps-converted-to.pdf "/Users/yannickwurm/Dropbox/DealationPro
 jAnalysis/2009 - Paper/timecoursePaperResubmission/images/timelineHorizontal169
 mm".eps>
-(epstopdf)             \includegraphics on input line 730.
+(epstopdf)             \includegraphics on input line 732.
 Package epstopdf Info: Output file is already uptodate.
 
 ! Package pdftex.def Error: File `"/Users/yannickwurm/Dropbox/DealationProjAnal
@@ -1268,13 +1273,13 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.730 ...ages/timelineHorizontal169mm\string".eps}
+l.732 ...ages/timelineHorizontal169mm\string".eps}
                                                   
 Using draft setting for this image.
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 730.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 732.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
@@ -1286,7 +1291,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.737 ...{images/replaceVennDiagram-Samesize-crop}
+l.739 ...{images/replaceVennDiagram-Samesize-crop}
                                                   \label{Fig:numbersOfGenes}
 I could not locate the file with any of these extensions:
 .png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
@@ -1300,7 +1305,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.744 ...{images/selectedGenes\lyxdot JHseparated}
+l.746 ...{images/selectedGenes\lyxdot JHseparated}
                                                   
 I could not locate the file with any of these extensions:
 .png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
@@ -1314,33 +1319,33 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.751 ...s[width=1\linewidth]{images/BlastGOTable}
+l.753 ...s[width=1\linewidth]{images/BlastGOTable}
                                                   
 I could not locate the file with any of these extensions:
 .png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-[15]
+[16]
 
 Package natbib Warning: There were undefined citations.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 800.
-[16]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 800.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 802.
+[17]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 802.
  (./N2_introgression.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 800.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 800.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 800.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 802.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 802.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 802.
  ) 
 Here is how much of TeX's memory you used:
- 11452 strings out of 493117
- 159428 string characters out of 6135433
- 237933 words of memory out of 5000000
- 14699 multiletter control sequences out of 15000+600000
- 35215 words of font info for 76 fonts, out of 8000000 for 9000
+ 11520 strings out of 493117
+ 160001 string characters out of 6135433
+ 237964 words of memory out of 5000000
+ 14760 multiletter control sequences out of 15000+600000
+ 37595 words of font info for 79 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 29i,6n,35p,1739b,478s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 29i,6n,35p,1739b,482s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/tex
 live/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texli
@@ -1351,10 +1356,10 @@ e/2014/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/20
 exmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2014/texmf-di
 st/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2014/texmf-dist/font
 s/type1/urw/palatino/uplri8a.pfb>
-Output written on N2_introgression.pdf (16 pages, 166067 bytes).
+Output written on N2_introgression.pdf (17 pages, 167276 bytes).
 PDF statistics:
- 160 PDF objects out of 1000 (max. 8388607)
- 132 compressed objects within 2 object streams
- 48 named destinations out of 1000 (max. 500000)
+ 169 PDF objects out of 1000 (max. 8388607)
+ 140 compressed objects within 2 object streams
+ 51 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

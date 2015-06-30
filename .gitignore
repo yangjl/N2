@@ -6,3 +6,7 @@ slurm-script/
 slurm-log/
 packrat/lib*/
 packrat/src/
+.bbl
+.blg
+.log
+.gz

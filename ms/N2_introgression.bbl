@@ -1,0 +1,11 @@
+\begin{thebibliography}{1}
+\providecommand{\natexlab}[1]{#1}
+\input{englbst.tex}
+\newcommand{\Capitalize}[1]{\uppercase{#1}}
+\newcommand{\capitalize}[1]{\expandafter\Capitalize#1}
+
+\bibitem[{Doyle \& J.L.(1990)}]{Doyle1990}
+Doyle JJ, JL D (1990) Isolation of plant dna from fresh tissue.
+\newblock \emph{Focus}, \textbf{12}, 13--15.
+
+\end{thebibliography}

@@ -1,15 +1,6 @@
 %%
-%% This is file `molecularEcology.bst',     version 2009-Sept-19th
+%% This is file `mine.bst',
 %% generated with the docstrip utility.
-%% AUTHOR:  yannick dot wurm at gmail dot com
-%%          http://yannick.poulet.org
-%%
-%% INFO:    Latex preamble requires natbib and 
-%%          <code>\setcitestyle{citesep={;},aysep={}}</code>
-%%
-%% HOW IT WAS BUILT:
-%% After generating with custom-bib/merlin.mbs as indicated below, I had to still add a '.' to the line { "\bbletal{}."}
-%%
 %%
 %% The original source files were:
 %%
@@ -234,7 +225,7 @@ FUNCTION {bbl.and}
 { "\bbland{}"}
 
 FUNCTION {bbl.etal}
-{ "\bbletal{}"}
+{ "\bbletal{}."}
 
 FUNCTION {bbl.editors}
 { "\bbleds{}" }
@@ -1596,7 +1587,7 @@ FUNCTION {begin.bib}
   write$ newline$
   "\providecommand{\natexlab}[1]{#1}"
   write$ newline$
-  "\input{englbst.tex}" write$ newline$
+  "\input{babelbst.tex}" write$ newline$
   "\newcommand{\Capitalize}[1]{\uppercase{#1}}" write$ newline$
   "\newcommand{\capitalize}[1]{\expandafter\Capitalize#1}" write$ newline$
 }

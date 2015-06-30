@@ -1,51 +1,106 @@
 This is BibTeX, Version 0.99d (TeX Live 2014)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: N2_introgression.aux
-I couldn't open style file mine.bst
----line 109 of file N2_introgression.aux
- : \bibstyle{mine
- :               }
-I'm skipping whatever remains of this command
-I found no style file---while reading file N2_introgression.aux
-You've used 58 entries,
-            0 wiz_defined-function locations,
-            189 strings with 2590 characters,
-and the built_in function-call counts, 0 in all, are:
-= -- 0
-> -- 0
-< -- 0
-+ -- 0
-- -- 0
-* -- 0
-:= -- 0
-add.period$ -- 0
-call.type$ -- 0
-change.case$ -- 0
-chr.to.int$ -- 0
-cite$ -- 0
-duplicate$ -- 0
-empty$ -- 0
-format.name$ -- 0
-if$ -- 0
-int.to.chr$ -- 0
-int.to.str$ -- 0
-missing$ -- 0
-newline$ -- 0
-num.names$ -- 0
-pop$ -- 0
-preamble$ -- 0
-purify$ -- 0
+The style file: molecularEcology.bst
+Database file #1: N2.bib
+Warning--I didn't find a database entry for "Ross1993Effect-of-a-fou"
+Warning--I didn't find a database entry for "RossShoemaker2008NumberOfFounders"
+Warning--I didn't find a database entry for "jouvenaz1977"
+Warning--I didn't find a database entry for "Shoemaker:2006PopGenetics"
+Warning--I didn't find a database entry for "ross:1997genetics"
+Warning--I didn't find a database entry for "KellerGreenBeard1998"
+Warning--I didn't find a database entry for "kriegerRoss02"
+Warning--I didn't find a database entry for "Vargo1999PhysiolEntomol"
+Warning--I didn't find a database entry for "FletcherCherixBlum1983"
+Warning--I didn't find a database entry for "Tschinkel:2006book"
+Warning--I didn't find a database entry for "Blum1981Pheromonal-Cont"
+Warning--I didn't find a database entry for "Burns:2007fk"
+Warning--I didn't find a database entry for "kendziorski:2005"
+Warning--I didn't find a database entry for "McGraw2004MatingSpermACPsFlies"
+Warning--I didn't find a database entry for "grozingerMatingChanges"
+Warning--I didn't find a database entry for "Renn2008Fish-and-chips"
+Warning--I didn't find a database entry for "Roberge2008"
+Warning--I didn't find a database entry for "wang-plosgenetic"
+Warning--I didn't find a database entry for "wangESTs2007"
+Warning--I didn't find a database entry for "smyth:2005"
+Warning--I didn't find a database entry for "smyth2004limma"
+Warning--I didn't find a database entry for "bioc2004"
+Warning--I didn't find a database entry for "r_reference:2007"
+Warning--I didn't find a database entry for "Smyth2003Normalization-o"
+Warning--I didn't find a database entry for "arrayQualityMetricsKauffmann2009"
+Warning--I didn't find a database entry for "BenjaminiHochberg1995"
+Warning--I didn't find a database entry for "Alaux:2009qv"
+Warning--I didn't find a database entry for "GeneOntology200"
+Warning--I didn't find a database entry for "Wurm:2009wo"
+Warning--I didn't find a database entry for "topGo2006"
+Warning--I didn't find a database entry for "LawniczakBegun2004FlyMating"
+Warning--I didn't find a database entry for "Rogers2008AnophelesMating"
+Warning--I didn't find a database entry for "Grozinger:2007brainVirginQ.SterileAndReproductiveWorkers"
+Warning--I didn't find a database entry for "Biomart2009"
+Warning--I didn't find a database entry for "inparanoid"
+Warning--I didn't find a database entry for "CytochromeP450Montellano2005"
+Warning--I didn't find a database entry for "GotzekReview2007"
+Warning--I didn't find a database entry for "OBPReviewPelosi2005"
+Warning--I didn't find a database entry for "Ross:1998pi"
+Warning--I didn't find a database entry for "ross:2002"
+Warning--I didn't find a database entry for "GotzekRoss2009"
+Warning--I didn't find a database entry for "Robinson1997Juvenile-hormon"
+Warning--I didn't find a database entry for "brentVargoJIP2003"
+Warning--I didn't find a database entry for "VargoLaurel1994"
+Warning--I didn't find a database entry for "Burns2002Identification-"
+Warning--I didn't find a database entry for "Bloch2000JH-JIP"
+Warning--I didn't find a database entry for "Kort1981JHReview"
+Warning--I didn't find a database entry for "Tobe1985CorpusAllatum"
+Warning--I didn't find a database entry for "TianVinsonCoates7genes.2004"
+Warning--I didn't find a database entry for "jemielityCasteDifferences"
+Warning--I didn't find a database entry for "Creg2006"
+Warning--I didn't find a database entry for "CellBiologyBook2000"
+Warning--I didn't find a database entry for "Buckley2000RegulationNeuronTrafficking"
+Warning--I didn't find a database entry for "mediator2005"
+Warning--I didn't find a database entry for "heteroChromatin2006"
+Warning--I didn't find a database entry for "nucleoplasmins2007"
+Warning--I didn't find a database entry for "Barker1979MuscleHistolysis"
+Warning--I didn't find a database entry for "Blum1983Regulation-of-Q"
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+You've used 1 entry,
+            3174 wiz_defined-function locations,
+            763 strings with 7235 characters,
+and the built_in function-call counts, 719 in all, are:
+= -- 63
+> -- 22
+< -- 1
++ -- 10
+- -- 6
+* -- 54
+:= -- 109
+add.period$ -- 2
+call.type$ -- 1
+change.case$ -- 7
+chr.to.int$ -- 1
+cite$ -- 1
+duplicate$ -- 54
+empty$ -- 58
+format.name$ -- 11
+if$ -- 144
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 8
+newline$ -- 11
+num.names$ -- 4
+pop$ -- 19
+preamble$ -- 1
+purify$ -- 6
 quote$ -- 0
-skip$ -- 0
+skip$ -- 17
 stack$ -- 0
-substring$ -- 0
-swap$ -- 0
+substring$ -- 54
+swap$ -- 20
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 0
+type$ -- 9
 warning$ -- 0
-while$ -- 0
+while$ -- 6
 width$ -- 0
-write$ -- 0
-(There were 2 error messages)
+write$ -- 18
+(There were 58 warnings)
