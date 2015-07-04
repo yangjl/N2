@@ -41,4 +41,4 @@ for(i in 1:10){
 }
 snpinfo <- snpinfo[order(snpinfo$chr, snpinfo$physical), ]
 snpinfo$mex <- apply(snpinfo[, 7:29], 1, mean)
-write.table(snpinfo, "data/jacknife_fdr.csv", sep=",", row.names=FALSE, quote=FALSE)
+write.table(snpinfo, "cache/jacknife_fdr.csv", sep=",", row.names=FALSE, quote=FALSE)
