@@ -1,13 +1,4 @@
-[Header]
-GSGT Version	1.1.9
-Processing Date	9/1/2011 1:29 PM
-Content		MaizeSNP50_A.bpm
-Num SNPs	49284
-Total SNPs	56110
-Num Samples	2
-Total Samples	314
-[Data]
-	RIMMA0786.1	RIMMA0787.1
+snpid	RIMMA0786.1	RIMMA0787.1
 abph1.15	GG	GG
 abph1.22	AA	AA
 ae1.4	GG	GG
