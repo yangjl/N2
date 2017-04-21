@@ -23,7 +23,7 @@ hist(miss2$F_MISS, main="Missing rate of landraces (N=23)", xlab="missing", brea
 #### mex
 frq2 <- read.table("largedata/runplink/mex_snp50k.frq", header=TRUE)
 miss1 <- read.table("largedata/runplink/mex_snp50k.imiss", header=TRUE)
-miss2 <- read.table("largedata/runplink/mex_snp50k.lmiss", header=TRUE)
+miss22 <- read.table("largedata/runplink/mex_snp50k.lmiss", header=TRUE)
 
 par(mfrow=c(1,2))
 hist(frq2$MAF, main="MAF of Mexicana (N=12)", xlab="MAF", breaks=30, col="bisque3")
@@ -32,11 +32,21 @@ hist(miss2$F_MISS, main="Missing rate of Mexicana (N=12)", xlab="missing", break
 #### Toton
 frq3 <- read.table("largedata/runplink/toton_snp50k.frq", header=TRUE)
 miss1 <- read.table("largedata/runplink/toton_snp50k.imiss", header=TRUE)
-miss2 <- read.table("largedata/runplink/toton_snp50k.lmiss", header=TRUE)
+miss23 <- read.table("largedata/runplink/toton_snp50k.lmiss", header=TRUE)
 
 par(mfrow=c(1,2))
 hist(frq2$MAF, main="MAF of Totontepec (N=12)", xlab="MAF", breaks=30, col="bisque3")
 hist(miss2$F_MISS, main="Missing rate of Totontepec (N=12)", xlab="missing", breaks=30, col="bisque3")
+
+
+pdf("graphs/maf_miss_2x2.pdf", width=8, height=8)
+par(mfrow=c(2,2))
+hist(frq2$MAF, main="MAF of Mexicana (N=12)", xlab="MAF", col="bisque3")
+hist(miss22$F_MISS, main="Missing rate of Mexicana (N=12)", xlab="missing", col="bisque3")
+hist(frq3$MAF, main="MAF of Totontepec lines (N=12)", xlab="MAF", col="bisque3")
+hist(miss23$F_MISS, main="Missing rate of Totontepec lines (N=12)", xlab="missing", col="bisque3")
+dev.off()
+
 
 #### all3 populations
 frq4 <- read.table("largedata/runplink/all3_snp50k.frq", header=TRUE)

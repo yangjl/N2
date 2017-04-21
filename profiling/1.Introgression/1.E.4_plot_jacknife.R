@@ -27,3 +27,7 @@ for(i in 1:10){
     barplot(tab, xlab="", xaxt="n", col=c("maroon","gold"), border=NA, space = 0)
 }
 dev.off()
+
+
+
+
