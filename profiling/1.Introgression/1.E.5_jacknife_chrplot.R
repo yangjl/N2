@@ -133,4 +133,8 @@ write.table(out0, "graphs/introgression_regions.csv", sep=",", row.names=FALSE, 
 
 sub <- subset(out0, dis > 1000000) 
 
+out0 <- read.csv("graphs/introgression_regions.csv")
+head(out0)
+
+
     
