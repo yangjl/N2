@@ -1,0 +1,40 @@
+---
+title: "About SNP Data"
+date: 05-16-2017
+output: html_notebook
+---
+
+#
+# Path normalization
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir=normalizePath('../../'))
+```
+
+## Early emails:
+
+The first file (`BennettSNPs_FINAL.txt`) includes the first twelve samples Alan sent.  These were samples they extracted in their lab and they did not perform well on the chips (you'll notice there is a lot of missing data).  I do not have any information on the accessions beyond their ID's and you may need to communicate with Pablo to learn more.  The second file (`LandraceSNPs_Final.txt`) is all of the landrace data we included in the landrace cluster file.  This includes your USDA landraces, my introgression landraces, landraces for the centromere project, and the remaining **36 Bennett Samples** (`RIMMA0763-RIMMA0780, RIMMA0782-RIMMA0798`).  There were a total of 49,284 SNPs after clustering (same SNPs in both files on Jeff's site), but there is no missing data cut-off since many projects were included in the cluster.  I've attached more information on the Bennett accessions from the full landrace cluster file.
+
+### Three missing, but only got two from Matt:
+
+- RIHU0001
+- RIMMA0786
+- RIMMA0787
+
+
+```{r}
+library(data.table)
+df <- fread("data/LandraceSNPs_FINAL.txt", data.table=FALSE)
+names(df)
+
+
+rif <- read.csv("data/Bennett36_passport.csv")
+tonid <- paste0(as.character(rif$RI.Accesssion), ".1")
+
+idx <- which(names(df) %in% tonid)
+
+tonsnp <- df[, c(1, idx)]
+
+m2 <- fread("data/BennettSNPs_Missing2.txt")
+```
+

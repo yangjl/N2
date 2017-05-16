@@ -11,3 +11,5 @@ packrat/src/
 *.blg
 *.log
 *synctex.gz
+.Rprofile
+
