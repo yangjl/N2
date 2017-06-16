@@ -110,3 +110,11 @@ getToton <- function(chrnum=3,
 }
 
 
+toton1 <- read.table("data/BennettSNPs_Missing2.txt", header=TRUE)
+toton2 <- read.table("data/LandraceSNPs_FINAL.txt", header=TRUE)
+
+toton0 <- merge(toton1, toton2, by="snpid")
+idx <- grep(paste(763:797, collapse="|"), names(toton0))
+
+toton <- toton0[, c(1, idx)]
+write.table(toton, "data/SNP55k_N=34.txt", sep="\t", row.names=FALSE, quote=FALSE)
