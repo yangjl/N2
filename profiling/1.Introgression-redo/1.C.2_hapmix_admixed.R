@@ -35,7 +35,7 @@ getToton <- function(chrnum=3,
                          ){
     
     #### get totontepec file
-    toton <- read.table("data/BennettSNPs_FINAL.txt", header=TRUE)
+    toton <- read.csv("data/BennettSNP50k_35samples_final.csv", header=TRUE)
     toton <- apply(toton, 2, as.character)
     toton[toton=="--"] <- "NN"
     toton <- as.data.frame(toton)
@@ -46,13 +46,13 @@ getToton <- function(chrnum=3,
     
     #### translate it into HAPMIX format
     nms <- names(toton)
-    idx1 <- which(nms =="P1")
-    idx2 <- which(nms =="P12_2")
-    idx3 <- which(nms == "P12")
+    idx1 <- which(nms =="RIMMA0763.1")
+    idx2 <- which(nms =="RIMMA0787.1_2")
+    idx3 <- which(nms == "RIMMA0787.1")
     
     toton[, idx1:idx2] <- apply(toton[, idx1:idx2], 2, as.character)
-    for(i in paste0("P", 1:12)){
-        pn <- i
+    for(i in idx1:idx3){
+        pn <- nms[i]
         pn1 <- paste(pn, "1", sep="_")
         pn2 <- paste(pn, "2", sep="_")
         toton[toton[, pn1] == "N" & toton[, pn2] == "N", pn] <- 9

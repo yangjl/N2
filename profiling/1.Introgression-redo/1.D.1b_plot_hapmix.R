@@ -3,12 +3,12 @@
 #pdf("~/Desktop/test.pdf", width=7, height=3.5)
 
 
-getIntrogress <- function(chr=10, hpout="HPOUT100", plotref1=TRUE, ...){
+getIntrogress <- function(chr=10, hpout="HPOUT1610", plotref1=TRUE, ...){
     snpinfo <- try(read.table(paste0("largedata/hapmixrun/snp_maize_chr", chr, ".info"), header=FALSE))
     
     names(snpinfo) <- c("snpid", "chr", "genetic", "physical", "ref", "alt")
      
-    for(i in 0:33){
+    for(i in 0:34){
         d1 <- try(read.table(paste0("largedata/hapmixrun/", hpout, "/TOTON.LOCALANC.", i, ".", chr)))
         if( exists("d1") ){
             if(plotref1){
@@ -43,16 +43,19 @@ pdf("graphs/introgression.pdf", height=3, width=10)
 par(mfrow=c(1, 1))
 snpinfo <- data.frame()
 for(i in 1:10){
-    tem <- getIntrogress(chr= i, hpout="T34OUT1610", plotref1 = TRUE, main=paste0("Chr", i))
+    tem <- getIntrogress(chr= i, hpout="HPOUT1610", plotref1 = FALSE, main=paste0("Chr", i))
     snpinfo <- rbind(snpinfo, tem)
 }
 dev.off()
 
-write.table(snpinfo, "cache/introgression_toton34.csv", sep=",", row.names=FALSE, quote=FALSE)
+
+ids <- read.table("largedata/hapmixrun/toton_chr1.ind", header=FALSE)
+names(snpinfo)[7:(ncol(snpinfo)-2)] <- as.character(ids$V1)
+write.table(snpinfo, "cache/introgression_toton35.csv", sep=",", row.names=FALSE, quote=FALSE)
 
 
 
-
+t34 <- read.csv("cache/introgression_toton35.csv")
 
 
 

@@ -6,10 +6,10 @@
 for(chri in 1:10){
     getToton(chrnum= chri,
              snpinfofile= paste0("largedata/hapmixrun/snp_maize_chr", chri,".info" ),
-             outgeno= paste0("largedata/hapmixrun/toton34_chr", chri, ".out" ),
-             outsnpinfo= paste0("largedata/hapmixrun/toton34_chr", chri, ".snpinfo" ),
-             outind= paste0("largedata/hapmixrun/toton34_chr", chri, ".ind"),
-             outrate= paste0("largedata/hapmixrun/toton34_chr", chri, ".rate")
+             outgeno= paste0("largedata/hapmixrun/toton35_chr", chri, ".out" ),
+             outsnpinfo= paste0("largedata/hapmixrun/toton35_chr", chri, ".snpinfo" ),
+             outind= paste0("largedata/hapmixrun/toton35_chr", chri, ".ind"),
+             outrate= paste0("largedata/hapmixrun/toton35_chr", chri, ".rate")
     )
 }
 
@@ -39,7 +39,7 @@ getToton <- function(chrnum=3,
     toton2 <- read.table("data/LandraceSNPs_FINAL.txt", header=TRUE)
     
     toton0 <- merge(toton1, toton2, by="snpid")
-    idx <- grep(paste(763:797, collapse="|"), names(toton0))
+    idx <- grep(paste(763:798, collapse="|"), names(toton0))
     
     toton <- toton0[, c(1, idx)]
     

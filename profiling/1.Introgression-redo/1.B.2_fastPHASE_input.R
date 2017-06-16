@@ -52,7 +52,7 @@ map_ref_alt <- function(){
 
 
 fp_by_chr <- function(mex.infile="data/Mexicanna_RIMME0033_top.txt",
-                      land.infile="data/Hapmapv2_landrace23.txt",
+                      land.infile="data/Hapmapv2_landrace23.txt", iscsv=FALSE,
                       mex.outbase="largedata/fphase/mex_120",
                       land.outbase="largedata/fphase/mex_120"
                       ){
@@ -62,7 +62,12 @@ fp_by_chr <- function(mex.infile="data/Mexicanna_RIMME0033_top.txt",
     message(sprintf("#>>> [ %s ] snps for [ %s ] Mexicanna plants", nrow(mex), ncol(mex)-1))
     
     ##### Landrace lines
-    maize <- read.table(land.infile, header=TRUE)
+    if(iscsv){
+        maize <- read.csv(land.infile, header=TRUE)
+    }else{
+        maize <- read.table(land.infile, header=TRUE) 
+    }
+    
     message(sprintf("#>>> [ %s ] snps for [ %s ] maize Landraces (hmp2) plants", nrow(maize), ncol(maize)-1))
     
     olsnp <- merge(mex[,1:2], maize[, 1:2], by="id")

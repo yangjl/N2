@@ -50,7 +50,7 @@ chrplot <- function(tab, val, bin=1, cutoff, cols = rep(c("slateblue", "cyan4"),
 
 #### Read in data
 jn <- read.csv("cache/jacknife_fdr.csv")
-snpinfo <- read.csv("cache/introgression_toton34.csv")
+snpinfo <- read.csv("cache/introgression_toton35.csv")
 
 info2 <- merge(snpinfo[, c("snpid", "chr", "genetic", "physical", "mex", "maize")], jn[, c("snpid", "mex")], by="snpid")
 info2$mex <- info2$mex.x - info2$mex.y

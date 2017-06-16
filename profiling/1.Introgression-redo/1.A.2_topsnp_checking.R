@@ -4,10 +4,10 @@
 
 source("lib/snp50k2plink.R")
 
-### Totontepec
-toton <- read.table("data/BennettSNPs_FINAL.txt", header=TRUE)
+### Totontepec new data N=35
+toton <- read.csv("data/BennettSNP50k_35samples_final.csv", header=TRUE)
 snp50k2plink(infiledf=toton, mapfile="data/snp50k.map", outfile="largedata/runplink/toton_snp50k", fid="toton")
-###>>> Merged [ 37568 ] SNPs for [ 12 ] plants
+###>>> Merged [ 37568 ] SNPs for [ 35 ] plants
 ###>>> write MAP file to [ largedata/runplink/toton_snp50k.map ]
 ###>>> write PED file to [ largedata/runplink/toton_snp50k.ped ]
 
