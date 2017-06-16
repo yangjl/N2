@@ -37,7 +37,7 @@ run_hapmix(gen=1610, pwd="largedata/hapmixrun", slurmsh_name="slurm-scripts/run_
 ###>>> In this path: cd /home/jolyang/Documents/Github/N2
 ###>>> [ note: --ntasks=INT, number of cup ]
 ###>>> [ note: --mem=16000, 16G memory ]
-###>>> RUN: sbatch -p bigmemh --ntasks=1 slurm-scripts/run_hapmix.sh
+###>>> RUN: sbatch -p bigmemh --ntasks=1 --mem 8G --time=30:00:00 slurm-scripts/run_hapmix.sh
 
 
 #perl bin/runHapmix.pl hprun1_chr10.par

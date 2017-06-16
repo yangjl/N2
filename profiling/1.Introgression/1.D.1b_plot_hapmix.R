@@ -48,11 +48,15 @@ for(i in 1:10){
 }
 dev.off()
 
+
 write.table(snpinfo, "cache/introgression_toton34.csv", sep=",", row.names=FALSE, quote=FALSE)
 
 
+t34 <- read.csv("cache/introgression_toton34.csv")
+ids <- read.table("largedata/hapmixrun/toton35_chr1.ind", header=FALSE)
+names(t34)[7:(ncol(t34)-2)] <- as.character(ids$V1)
 
-
+write.table(t34, "cache/introgression_toton34_RIMMA.csv", sep=",", row.names=FALSE, quote=FALSE)
 
 
 
