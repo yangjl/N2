@@ -55,7 +55,8 @@ snpinfo <- read.csv("cache/introgression_toton34.csv")
 ## David highland and lowland calculation
 hl <- read.csv("largedata/introgression_toton34_highlow.csv")
 
-info2 <- merge(hl[, c("snpid", "chr", "genetic", "physical", "mex", "maize", "highland", "lowland")], jn[, c("snpid", "mex")], by="snpid")
+info2 <- merge(hl[, c("snpid", "chr", "genetic", "physical", "mex", "maize", "highland", "lowland")], 
+               jn[, c("snpid", "mex")], by="snpid")
 info2$highland <- info2$highland - info2$mex.y
 info2[info2$highland < 0, ]$highland <- 0
 #info2$maize <- 1 - info2$mex
@@ -105,11 +106,11 @@ chrplot(tab=tab, val="lowland", bin=BINSIZE, cutoff=2, cols = c("grey", "cyan4")
 dev.off()
 
 ###### find continuous regions
-get_regions <- function(df=info2, cutoff= 0.2, snpno=1){
+get_regions <- function(df=info2, col="highland", cutoff= 0.2, snpno=1){
     df <- df[order(df$chr, df$pos),]
     df$idx <- 1:nrow(df)
     
-    sub <- subset(df, mex > cutoff)
+    sub <- subset(df, df[,col] > cutoff)
     sub$chunk <- 1
     
     chunkid <- 1
@@ -129,7 +130,7 @@ get_regions <- function(df=info2, cutoff= 0.2, snpno=1){
         out <- subset(sub, chunk == ci)
         if(nrow(out) > 1){
             tem <- data.frame(chr=mean(out$chr), start=min(out$pos), start_snpid=out$snpid[1],
-                              end=max(out$pos), end_snpid=out$snpid[nrow(out)], mex=mean(out$mex),
+                              end=max(out$pos), end_snpid=out$snpid[nrow(out)], mex=mean(out[,col]),
                               nsnp=nrow(out))
             myout <- rbind(myout, tem)
         }
@@ -140,13 +141,17 @@ get_regions <- function(df=info2, cutoff= 0.2, snpno=1){
 }
 
 #####
-out0 <- get_regions(df=info2, cutoff= 0.2, snpno=1)
+out0 <- get_regions(df=info2, col="highland", cutoff= 0.2, snpno=1)
+write.table(out0, "graphs/introgression_regions_highland.csv", sep=",", row.names=FALSE, quote=FALSE)    
 
-   
-write.table(out0, "graphs/introgression_regions.csv", sep=",", row.names=FALSE, quote=FALSE)    
+
+out1 <- get_regions(df=info2, col="lowland", cutoff= 0.2, snpno=1)
+write.table(out1, "graphs/introgression_regions_lowland.csv", sep=",", row.names=FALSE, quote=FALSE)    
 
 sub <- subset(out0, dis > 1000000) 
-
+dim(sub) #178
+sub <- subset(out1, dis > 1000000) 
+dim(sub) #150
 out0 <- read.csv("graphs/introgression_regions.csv")
 head(out0)
 
